@@ -3,6 +3,7 @@
 angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['generalStatsService', 'config',
     function GeneralStatsCtrl(generalStatsService, config) {
         var generalStats = this;
+        generalStats.config = config;
         generalStats.options = {
             "chart": {
                 "type": "lineChart",
@@ -37,7 +38,7 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['ge
             }
         }
         generalStats.data = [];
-        generalStatsService.applicant(config.apiRoot, config.user.user_id, config.company.id).then(function(resp) {
+        generalStatsService.applicant(config.user.user_id, config.company.id).then(function(resp) {
             if (config._DEBUG)
                 console.log(resp);
             generalStats.data.push({
@@ -48,7 +49,7 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['ge
             if (config._DEBUG)
                 console.log(error);
         });
-        generalStatsService.job(config.apiRoot, config.user.user_id, config.company.id).then(function(resp) {
+        generalStatsService.job(config.user.user_id, config.company.id).then(function(resp) {
             if (config._DEBUG)
                 console.log(resp);
             generalStats.data.push({

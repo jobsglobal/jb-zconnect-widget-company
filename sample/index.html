@@ -43,7 +43,8 @@
     <script type="text/javascript">
     angular
         .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule'])
-        .config(function(dashboardProvider, localStorageServiceProvider) {
+        .config(function(dashboardProvider, localStorageServiceProvider, jbWidgetProvider) {
+            jbWidgetProvider.setApiRoot('//jobsglobal.dev/api/v1');
             localStorageServiceProvider.setPrefix('adf.jb-zconnect-widget-company');
             dashboardProvider.structure('1', {
                     rows: [{
@@ -62,29 +63,74 @@
                             styleClass: 'col-md-8',
                             widgets: []
                         }]
+                    }, {
+                        columns: [{
+                            styleClass: 'col-md-4',
+                            widgets: []
+                        }, {
+                            styleClass: 'col-md-4',
+                            widgets: []
+                        }, {
+                            styleClass: 'col-md-4',
+                            widgets: []
+                        }]
                     }]
                 })
-        }).controller('dashboardController', function($scope, localStorageService) {
+        }).run(['$rootScope', function($rootScope) {
+
+            $rootScope.$on('adfWidgetAdded', function() {
+                console.log(arguments);
+            });
+        }])
+        .controller('dashboardController', function($scope, localStorageService, $rootScope) {
             var model = localStorageService.get('widgetSampleDashboard');
             if (!model) {
+                var config = {
+                    height: 225,
+                    _DEBUG: true,
+                    user: {
+                        user_id: 545
+                    },
+                    company: {
+                        id: 67
+                    }
+                };
                 model = {
                     rows: [{
                         columns: [{
-                            styleClass: 'col-md-12',
+                            styleClass: 'col-md-8',
+                            widgets: [{
+                                type: 'general-stats',
+                                title: 'Generals Statistics',
+                                config: config
+                            }]
+                        }, {
+                            styleClass: 'col-md-4',
                             widgets: [{
                                 type: 'top-jobs',
-                                title: 'Company Widget',
-                                config: {
-                                    height: 120,
-                                    apiRoot: '//jobsglobal.dev/api/v1',
-                                    _DEBUG: true,
-                                    user: {
-                                        user_id: 545
-                                    },
-                                    company: {
-                                        id: 67
-                                    }
-                                }
+                                title: 'Top Jobs',
+                                config: angular.extend(config, {
+                                    limit: 5
+                                })
+                            }]
+                        }]
+                    }, {
+                        columns: [{
+                            styleClass: 'col-md-4',
+                            widgets: [{
+                                type: 'drop-cv',
+                                title: 'CV Dropzone',
+                                config: config
+                            }]
+                        }, {
+                            styleClass: 'col-md-4',
+                            widgets: []
+                        }, {
+                            styleClass: 'col-md-4',
+                            widgets: [{
+                                type: 'ads',
+                                title: 'Advertisements',
+                                config: config
                             }]
                         }]
                     }]

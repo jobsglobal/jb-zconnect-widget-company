@@ -1,0 +1,8 @@
+<div class="ads" style="height: {{ads.config.height}}px !important">
+    <slick slides-to-show="1" slides-to-scroll="1" autoplay="true" autoplaySpeed="2" arrows="true" centerMode="true" dots="true">
+        <div data-ng-repeat="ad in ads.list" class="text-center container">
+            <img data-ng-src="{{ad.imageUrl}}" alt="{{ad.title}}">
+            <span class="ad-message">{{ad.message}}</span>
+        </div>
+    </slick>
+</div>
