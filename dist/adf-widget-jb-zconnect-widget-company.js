@@ -44,23 +44,25 @@ $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/view.html","<di
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<nvd3 options=generalStats.options data=generalStats.data></nvd3>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html","<table class=\"table table-striped table-responsive\"><tr><th>Position</th><th>Applicants</th></tr><tr data-ng-repeat=\"job in topJobs.data | limitTo: topJobs.limit\"><td data-ng-bind=\"job.job_title | limitTo: 20\"></td><td class=text-center data-ng-bind=job.total></td></tr></table>");}]);
 
-angular.module('jb-zconnect-widget-company')
-    .service('topJobsService', ['$http', '$q', function topJobsService($http, $q) {
-        return {
-            getStats: function(userId, companyId, jobId, from, to, mode) {
-                var url = 'http://jobsglobal.dev/api/v1/employer/' + userId + '/company/' + companyId + '/job/' + jobId + '/stats/' + from + '/' + to + '?mode=' + mode + '&callback=JSON_CALLBACK';
-                var deferred = $q.defer();
-                $http.jsonp(url).then(function(resp) {
-                    var data = resp.data.data;
 
-                    deferred.resolve(data);
+angular.module('jb-zconnect-widget-company').factory('topJobsService', ['$http', '$q',
+    function topJobsService($http, $q) {
+        return {
+            mostApplied: function(apiRoot, userId, companyId, $limit, $from, $to) {
+                var deferred = $q.defer();
+                var url = apiRoot + '/employer/' + userId + '/company/' + companyId + '/job/listWithApplicants?callback=JSON_CALLBACK';
+                if ($limit)
+                    url += '&limit=' + $limit;
+                $http.jsonp(url).then(function(resp) {
+                    deferred.resolve(resp.data);
                 }, function(error) {
                     deferred.reject(error);
                 });
                 return deferred.promise;
             }
         };
-    }]);
+    }
+]);
 
 angular.module('jb-zconnect-widget-company').factory('generalStatsService', ['$http', '$q', function generalStatsService($http, $q) {
 
