@@ -34,18 +34,6 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['ge
                     return parseInt(data.count);
                 },
 
-            },
-            "title": {
-                "enable": true,
-                "text": "Company Statistics"
-            },
-            "subtitle": {
-                "enable": false,
-                "text": "",
-                "css": {
-                    "text-align": "center",
-                    "margin": "10px 13px 0px 7px"
-                }
             }
         }
         generalStats.data = [];

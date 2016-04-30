@@ -3,23 +3,23 @@
 
 angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3'])
     .config(["dashboardProvider", function(dashboardProvider) {
-        var widget = {
-            reload: true,
-            resolve: {},
-            edit: {
-                templateUrl: '{widgetsPath}/github/src/edit.html'
+        var widgetConfig = {
+            height: 225,
+            apiRoot: '/api/v1',
+            _DEBUG: false,
+            user: {
+                user_id: 0
             },
-            config: {
-                height: 225,
-                apiRoot: '/api/v1',
-                _DEBUG: false,
-                user: {
-                    user_id: 0
-                },
-                company: {
-                    id: 0
-                }
+            company: {
+                id: 0
             }
+        };
+        var widget = {
+            collapse: false,
+            frameless: true,
+            styleClass: "",
+            reload: true,
+            resolve: {}
         };
         dashboardProvider
             .widget('general-stats', angular.extend({
@@ -27,14 +27,16 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3'])
                 description: 'Widget for showing general information for company.',
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html',
                 controller: 'GeneralStatsCtrl',
-                controllerAs: 'generalStats'
+                controllerAs: 'generalStats',
+                config: angular.extend({}, widgetConfig)
             }, widget))
             .widget('top-jobs', angular.extend({
                 title: 'Company General Stats',
                 description: 'Widget for showing general information for company.',
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html',
                 controller: 'TopJobsCtrl',
-                controllerAs: 'topJobs'
+                controllerAs: 'topJobs',
+                config: angular.extend({}, widgetConfig)
 
             }, widget));
     }]);
@@ -139,18 +141,6 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['ge
                     return parseInt(data.count);
                 },
 
-            },
-            "title": {
-                "enable": true,
-                "text": "Company Statistics"
-            },
-            "subtitle": {
-                "enable": false,
-                "text": "",
-                "css": {
-                    "text-align": "center",
-                    "margin": "10px 13px 0px 7px"
-                }
             }
         }
         generalStats.data = [];
