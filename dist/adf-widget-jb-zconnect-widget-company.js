@@ -43,8 +43,8 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3'])
 
 angular.module("jb-zconnect-widget-company").run(["$templateCache", function($templateCache) {$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/edit.html","<form role=form><div class=form-group><label for=sample>Sample</label> <input type=text class=form-control id=sample ng-model=config.sample placeholder=\"Enter sample\"></div></form>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/view.html","<div><h1>Widget view</h1><p>Content of {{config.sample}}</p></div>");
-$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<nvd3 options=generalStats.options data=generalStats.data></nvd3>");
-$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html","<table class=\"table table-striped table-responsive\" style=\"height: {{topJobs.config.height}};overflow: auto\"><tr><th>Position</th><th>Applicants</th></tr><tr data-ng-repeat=\"job in topJobs.data | limitTo: topJobs.limit\"><td data-ng-bind=\"job.job_title | limitTo: 20\"></td><td class=text-center data-ng-bind=job.total></td></tr></table>");}]);
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<div class=general-stats style=\"height: {{topJobs.config.height}}px !important;overflow: auto\"><nvd3 options=generalStats.options data=generalStats.data></nvd3></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html","<div class=top-jobs style=\"height: {{topJobs.config.height}}px !important;overflow: auto\"><table class=\"table table-striped table-responsive\"><tr><th>Position</th><th>Applicants</th></tr><tr data-ng-repeat=\"job in topJobs.data | limitTo: topJobs.limit\"><td data-ng-bind=\"job.job_title | limitTo: 20\"></td><td class=text-center data-ng-bind=job.total></td></tr></table></div>");}]);
 
 
 angular.module('jb-zconnect-widget-company').factory('topJobsService', ['$http', '$q',
