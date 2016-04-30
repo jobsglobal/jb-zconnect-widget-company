@@ -89,7 +89,7 @@ angular.module('jb-zconnect-widget-company').service('topJobsService', ['$http',
 
 
 
-angular.module('jb-zconnect-widget-company').provider('jbWidget', ["$http", "$q", function($http, $q) {
+angular.module('jb-zconnect-widget-company').provider('jbWidget', function() {
     var self = this;
     var apiRoot = '//jobsglobal.dev/api/v1';
     self.setApiRoot = function(value) {
@@ -100,7 +100,7 @@ angular.module('jb-zconnect-widget-company').provider('jbWidget', ["$http", "$q"
             apiRoot: apiRoot
         }
     }];
-}]);
+});
 
 angular.module('jb-zconnect-widget-company').service('generalStatsService', ['$http', '$q', 'jbWidget', function($http, $q, jbWidget) {
     var self = this;
