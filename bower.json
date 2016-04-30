@@ -1,0 +1,40 @@
+{
+  "name": "adf-widget-jb-zconnect-widget-company",
+  "version": "0.1.0",
+  "main": "dist/adf-widget-jb-zconnect-widget-company.js",
+  "ignore": [
+    "bower.json",
+    ".bowerrc",
+    ".jshintrc",
+    ".gitignore",
+    "gulpfile.js",
+    "node_modules",
+    "package.json",
+    "components",
+    "src"
+  ],
+  "keywords": [
+    "dashboard",
+    "widget",
+    "adf",
+    "adf-widget"
+  ],
+  "description": "Widget for showing information of a company.",
+  "dependencies": {
+    "angular-dashboard-framework": ">=0.10",
+    "moment": "^2.13.0",
+    "angular-nvd3": "^1.0.6"
+  },
+  "devDependencies": {
+    "angular-local-storage": ">=0.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}

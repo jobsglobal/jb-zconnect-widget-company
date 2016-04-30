@@ -1,0 +1,10 @@
+<table class="table table-striped table-responsive">
+    <tr>
+        <th>Position</th>
+        <th>Applicants</th>
+    </tr>
+    <tr data-ng-repeat="job in topJobs.data | limitTo: topJobs.limit">
+        <td data-ng-bind="job.job_title | limitTo: 20"></td>
+        <td class="text-center" data-ng-bind="job.total"></td>
+    </tr>
+</table>
