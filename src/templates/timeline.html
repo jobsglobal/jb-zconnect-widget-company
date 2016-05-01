@@ -1,0 +1,15 @@
+<div class="timeline" style="height: {{timeline.config.height}}px !important">
+    <timeline>
+        <timeline-event ng-repeat="event in timeline.events" side="right">
+            <timeline-badge class="{{event.badgeClass}}">
+                <i class="glyphicon {{event.badgeIconClass}}"></i>
+            </timeline-badge>
+            <timeline-panel class="{{event.badgeClass}}">
+                <timeline-heading>
+                    <h4 data-ng-bind-html="event.title"></h4>
+                </timeline-heading>
+                <p data-ng-bind-html="event.content"></p>
+            </timeline-panel>
+        </timeline-event>
+    </timeline>
+</div>

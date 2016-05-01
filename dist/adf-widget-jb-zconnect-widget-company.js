@@ -1,7 +1,7 @@
 (function(window, undefined) {'use strict';
 
 
-angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick'])
+angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize'])
     .config(["dashboardProvider", function(dashboardProvider) {
         Dropzone.autoDiscover = false;
         var widgetConfig = {
@@ -10,7 +10,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
         };
         var widget = {
             collapse: false,
-            frameless: true,
+            frameless: false,
             styleClass: "",
             reload: true,
             resolve: {}
@@ -64,9 +64,10 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
 
 angular.module("jb-zconnect-widget-company").run(["$templateCache", function($templateCache) {$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/edit.html","<form role=form><div class=form-group><label for=sample>Sample</label> <input type=text class=form-control id=sample ng-model=config.sample placeholder=\"Enter sample\"></div></form>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/view.html","<div><h1>Widget view</h1><p>Content of {{config.sample}}</p></div>");
-$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html","<div class=ads style=\"height: {{ads.config.height}}px !important\"><slick slides-to-show=1 slides-to-scroll=1 autoplay=true autoplayspeed=2 arrows=true centermode=true dots=true><div data-ng-repeat=\"ad in ads.list\" class=\"text-center container\"><img data-ng-src={{ad.imageUrl}} alt={{ad.title}}> <span class=ad-message>{{ad.message}}</span></div></slick></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html","<div class=ads style=\"height: {{ads.config.height}}px !important\"><slick slides-to-show=1 data=ads.list slides-to-scroll=1 autoplay=true autoplayspeed=2 arrows=true centermode=true dots=true init-onload=true><div data-ng-repeat=\"ad in ads.list\" class=\"text-center container\"><a data-ng-href={{ad.link}}><img data-ng-src={{ad.image}} alt={{ad.title}}> <span class=ad-message>{{ad.message}}</span></a></div></slick></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html","<div class=drop-cv style=\"height: {{dropCv.config.height}}px !important;\"><form class=dropzone method=post enctype=multipart/form-data ng-dropzone dropzone=dropCv.dropzone dropzone-config=dropCv.dropzoneConfig event-handlers=\"{ \'addedfile\': dropCv.dzAddedFile, \'error\': dropCv.dzError }\" style=\"min-height: {{dropCv.config.height}}px\"><div class=dz-message>Drop CV here or click to upload</div></form></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<div class=general-stats style=\"height: {{generalStats.config.height}}px !important;overflow: auto\"><nvd3 options=generalStats.options data=generalStats.data></nvd3></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html","<div class=timeline data-ng-bind-html=timeline.htmlContent style=\"height: {{timeline.config.height}}px !important\"></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html","<div class=top-jobs style=\"height: {{topJobs.config.height}}px !important;overflow: auto\"><table class=\"table table-striped table-responsive\"><tr><th>Position</th><th>Applicants</th></tr><tr data-ng-repeat=\"job in topJobs.data\"><td data-ng-bind=\"job.job_title | limitTo: 20\"></td><td class=text-center data-ng-bind=job.total></td></tr></table></div>");}]);
 
 
@@ -79,6 +80,25 @@ angular.module('jb-zconnect-widget-company').service('topJobsService', ['$http',
         if ($limit)
             url += '&limit=' + $limit;
         $http.jsonp(url).then(function(resp) {
+            deferred.resolve(resp.data);
+        }, function(error) {
+            deferred.reject(error);
+        });
+        return deferred.promise;
+    }
+}]);
+
+angular.module('jb-zconnect-widget-company').service('timelineService', ['$http', '$q', 'dashboard', 'jbWidget', function($http, $q, dashboard, jbWidget) {
+    var apiRoot = jbWidget.apiRoot;
+    var self = this;
+    self.getTimelineHtml = function(userId, companyId) {
+        var deferred = $q.defer();
+        $http.jsonp(apiRoot + '/employer/' + userId + '/company/' + companyId + '/activities?callback=JSON_CALLBACK', {
+
+            headers: {
+                'Content-type': 'text/html'
+            }
+        }).then(function(resp) {
             deferred.resolve(resp.data);
         }, function(error) {
             deferred.reject(error);
@@ -130,31 +150,19 @@ angular.module('jb-zconnect-widget-company').service('dropCvService', ['$http', 
 }])
 
 angular.module('jb-zconnect-widget-company').service('adsService', ['$http', '$q', 'dashboard', 'jbWidget', function($http, $q, dashboard, jbWidget) {
-    console.log(dashboard.widgets);
+    var apiRoot = jbWidget.apiRoot;
     var self = this;
     self.getAll = function() {
-
-        var data = [{
-            title: 'Sample Ad1',
-            imageUrl: '/src/assets/img/BuyNowButtonBlue.jpg',
-            message: 'This is sample ad1'
-        }, {
-            title: 'Sample Ad2',
-            imageUrl: '/src/assets/img/BuyNowButtonBlue.jpg',
-            message: 'This is sample ad2'
-
-        }, {
-            title: 'Sample Ad3',
-            imageUrl: '/src/assets/img/BuyNowButtonBlue.jpg',
-            message: 'This is sample ad3'
-
-        }];
         var deferred = $q.defer();
-        deferred.resolve(data);
+        $http.jsonp(apiRoot + '/ads?callback=JSON_CALLBACK').then(function(resp) {
+            deferred.resolve(resp.data);
+        }, function(error) {
+            deferred.reject(error);
+        })
         return deferred.promise;
     };
 
-}])
+}]);
 
 
 
@@ -166,6 +174,21 @@ angular.module('jb-zconnect-widget-company').controller('TopJobsCtrl', ['config'
         if (config._DEBUG)
             console.log(resp);
         topJobs.data = resp.data;
+    }, function(error) {
+        if (config._DEBUG)
+            console.log(error);
+    })
+}]);
+
+
+
+angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'timelineService', function TimelineCtrl(config, timelineService) {
+    var timeline = this;
+    timeline.config = config;
+    timelineService.getTimelineHtml(config.user.user_id, config.company.id).then(function(resp) {
+        if (config._DEBUG)
+            console.log(resp);
+        timeline.htmlContent = resp.data;
     }, function(error) {
         if (config._DEBUG)
             console.log(error);

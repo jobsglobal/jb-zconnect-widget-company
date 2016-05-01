@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick'])
+angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize'])
     .config(function(dashboardProvider) {
         Dropzone.autoDiscover = false;
         var widgetConfig = {
@@ -9,7 +9,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
         };
         var widget = {
             collapse: false,
-            frameless: true,
+            frameless: false,
             styleClass: "",
             reload: true,
             resolve: {}
