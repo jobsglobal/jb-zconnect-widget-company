@@ -67,7 +67,7 @@ $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/view.html","<di
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html","<div class=ads style=\"height: {{ads.config.height}}px !important\"><slick slides-to-show=1 data=ads.list slides-to-scroll=1 autoplay=true autoplayspeed=2 arrows=true centermode=true dots=true init-onload=true><div data-ng-repeat=\"ad in ads.list\" class=\"text-center container\"><a data-ng-href={{ad.link}}><img data-ng-src={{ad.image}} alt={{ad.title}}> <span class=ad-message>{{ad.message}}</span></a></div></slick></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html","<div class=drop-cv style=\"height: {{dropCv.config.height}}px !important;\"><form class=dropzone method=post enctype=multipart/form-data ng-dropzone dropzone=dropCv.dropzone dropzone-config=dropCv.dropzoneConfig event-handlers=\"{ \'addedfile\': dropCv.dzAddedFile, \'error\': dropCv.dzError }\" style=\"min-height: {{dropCv.config.height}}px\"><div class=dz-message>Drop CV here or click to upload</div></form></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<div class=general-stats style=\"height: {{generalStats.config.height}}px !important;overflow: auto\"><nvd3 options=generalStats.options data=generalStats.data></nvd3></div>");
-$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html","<div class=timeline data-ng-bind-html=timeline.htmlContent style=\"height: {{timeline.config.height}}px !important\"></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html","<div class=timeline style=\"height: {{timeline.config.height}}px !important\"><timeline><timeline-event ng-repeat=\"event in timeline.events\" side=right><timeline-badge class={{event.badgeClass}}><i class=\"glyphicon {{event.badgeIconClass}}\"></i></timeline-badge><timeline-panel class={{event.badgeClass}}><timeline-heading><h4 data-ng-bind-html=event.title></h4></timeline-heading><p data-ng-bind-html=event.content></p></timeline-panel></timeline-event></timeline></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html","<div class=top-jobs style=\"height: {{topJobs.config.height}}px !important;overflow: auto\"><table class=\"table table-striped table-responsive\"><tr><th>Position</th><th>Applicants</th></tr><tr data-ng-repeat=\"job in topJobs.data\"><td data-ng-bind=\"job.job_title | limitTo: 20\"></td><td class=text-center data-ng-bind=job.total></td></tr></table></div>");}]);
 
 
@@ -93,12 +93,7 @@ angular.module('jb-zconnect-widget-company').service('timelineService', ['$http'
     var self = this;
     self.getTimelineHtml = function(userId, companyId) {
         var deferred = $q.defer();
-        $http.jsonp(apiRoot + '/employer/' + userId + '/company/' + companyId + '/activities?callback=JSON_CALLBACK', {
-
-            headers: {
-                'Content-type': 'text/html'
-            }
-        }).then(function(resp) {
+        $http.jsonp(apiRoot + '/employer/' + userId + '/company/' + companyId + '/activities?callback=JSON_CALLBACK').then(function(resp) {
             deferred.resolve(resp.data);
         }, function(error) {
             deferred.reject(error);
@@ -188,7 +183,7 @@ angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config
     timelineService.getTimelineHtml(config.user.user_id, config.company.id).then(function(resp) {
         if (config._DEBUG)
             console.log(resp);
-        timeline.htmlContent = resp.data;
+        timeline.events = resp.data;
     }, function(error) {
         if (config._DEBUG)
             console.log(error);
