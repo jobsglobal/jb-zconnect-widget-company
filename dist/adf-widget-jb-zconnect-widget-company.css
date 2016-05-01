@@ -12,10 +12,17 @@
 
 .ads img {
     margin: auto;
-    width: 100%;
-    float: left;
+    height: 100%;
 }
 
 .timeline {
     overflow: auto;
+}
+
+.slick-dots {
+    bottom: -25px !important;
+}
+
+.actor-avatar {
+    overflow: hidden;
 }

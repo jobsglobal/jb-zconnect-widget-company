@@ -45,6 +45,12 @@
         .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule'])
         .config(function(dashboardProvider, localStorageServiceProvider, jbWidgetProvider) {
             jbWidgetProvider.setApiRoot('//jobsglobal.dev/api/v1');
+            jbWidgetProvider.setUser({
+                user_id: 545
+            });
+            jbWidgetProvider.setCompany({
+                id: 67
+            });
             localStorageServiceProvider.setPrefix('adf.jb-zconnect-widget-company');
             dashboardProvider.structure('1', {
                     rows: [{
@@ -76,24 +82,13 @@
                         }]
                     }]
                 })
-        }).run(['$rootScope', function($rootScope) {
-
-            $rootScope.$on('adfWidgetAdded', function() {
-                console.log(arguments);
-            });
-        }])
+        })
         .controller('dashboardController', function($scope, localStorageService, $rootScope) {
             var model = localStorageService.get('widgetSampleDashboard');
             if (!model) {
                 var config = {
                     height: 225,
-                    _DEBUG: true,
-                    user: {
-                        user_id: 545
-                    },
-                    company: {
-                        id: 67
-                    }
+                    _DEBUG: true
                 };
                 model = {
                     rows: [{
@@ -143,6 +138,9 @@
             $scope.dashboard = {
                 model: model
             };
+            $scope.$on('adfWidgetAdded', function(name, model, widget) {
+                console.log(name);
+            });
             $scope.$on('adfDashboardChanged', function(event, name, model) {
                 localStorageService.set(name, model);
             });

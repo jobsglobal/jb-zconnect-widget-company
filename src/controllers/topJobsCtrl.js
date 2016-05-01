@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('TopJobsCtrl', ['config', 'topJobsService', function TopJobsCtrl(config, topJobsService) {
+angular.module('jb-zconnect-widget-company').controller('TopJobsCtrl', ['config', 'topJobsService', 'jbWidget', function TopJobsCtrl(config, topJobsService, jbWidget) {
     var topJobs = this;
     topJobs.data = [];
     topJobs.config = config;
-    topJobsService.mostApplied(config.user.user_id, config.company.id, config.limit).then(function(resp) {
-        if (config._DEBUG)
+    topJobsService.mostApplied(jbWidget.user.user_id, jbWidget.company.id, jbWidget.limit).then(function(resp) {
+        if (jbWidget._DEBUG)
             console.log(resp);
         topJobs.data = resp.data;
     }, function(error) {
-        if (config._DEBUG)
+        if (jbWidget._DEBUG)
             console.log(error);
     })
 }]);

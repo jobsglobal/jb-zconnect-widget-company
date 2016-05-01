@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['generalStatsService', 'config',
-    function GeneralStatsCtrl(generalStatsService, config) {
+angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['generalStatsService', 'config', 'jbWidget',
+    function GeneralStatsCtrl(generalStatsService, config, jbWidget) {
         var generalStats = this;
         generalStats.config = config;
         generalStats.options = {
@@ -38,26 +38,26 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['ge
             }
         }
         generalStats.data = [];
-        generalStatsService.applicant(config.user.user_id, config.company.id).then(function(resp) {
-            if (config._DEBUG)
+        generalStatsService.applicant(jbWidget.user.user_id, jbWidget.company.id).then(function(resp) {
+            if (jbWidget._DEBUG)
                 console.log(resp);
             generalStats.data.push({
                 key: 'Applicants',
                 values: resp.data
             });
         }, function(error) {
-            if (config._DEBUG)
+            if (jbWidget._DEBUG)
                 console.log(error);
         });
-        generalStatsService.job(config.user.user_id, config.company.id).then(function(resp) {
-            if (config._DEBUG)
+        generalStatsService.job(jbWidget.user.user_id, jbWidget.company.id).then(function(resp) {
+            if (jbWidget._DEBUG)
                 console.log(resp);
             generalStats.data.push({
                 key: 'Jobs',
                 values: resp.data
             });
         }, function(error) {
-            if (config._DEBUG)
+            if (jbWidget._DEBUG)
                 console.log(error);
         });
     }

@@ -1,7 +1,7 @@
 (function(window, undefined) {'use strict';
 
 
-angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize'])
+angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize', 'angular-timeline', 'angularMoment', 'ngAnimate'])
     .config(["dashboardProvider", function(dashboardProvider) {
         Dropzone.autoDiscover = false;
         var widgetConfig = {
@@ -64,10 +64,10 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
 
 angular.module("jb-zconnect-widget-company").run(["$templateCache", function($templateCache) {$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/edit.html","<form role=form><div class=form-group><label for=sample>Sample</label> <input type=text class=form-control id=sample ng-model=config.sample placeholder=\"Enter sample\"></div></form>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/view.html","<div><h1>Widget view</h1><p>Content of {{config.sample}}</p></div>");
-$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html","<div class=ads style=\"height: {{ads.config.height}}px !important\"><slick slides-to-show=1 data=ads.list slides-to-scroll=1 autoplay=true autoplayspeed=2 arrows=true centermode=true dots=true init-onload=true><div data-ng-repeat=\"ad in ads.list\" class=\"text-center container\"><a data-ng-href={{ad.link}}><img data-ng-src={{ad.image}} alt={{ad.title}}> <span class=ad-message>{{ad.message}}</span></a></div></slick></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html","<div class=ads style=\"height: {{ads.config.height}}px !important\"><slick slides-to-show=1 data=ads.list slides-to-scroll=1 autoplay=false autoplayspeed=2 arrows=true centermode=true dots=true init-onload=true><div data-ng-repeat=\"ad in ads.list\" class=\"text-center container\"><a data-ng-href={{ad.link}}><img class=img-responsive data-ng-src={{ad.image}} alt={{ad.title}}> <span class=ad-message>{{ad.message}}</span></a></div></slick></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html","<div class=drop-cv style=\"height: {{dropCv.config.height}}px !important;\"><form class=dropzone method=post enctype=multipart/form-data ng-dropzone dropzone=dropCv.dropzone dropzone-config=dropCv.dropzoneConfig event-handlers=\"{ \'addedfile\': dropCv.dzAddedFile, \'error\': dropCv.dzError }\" style=\"min-height: {{dropCv.config.height}}px\"><div class=dz-message>Drop CV here or click to upload</div></form></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<div class=general-stats style=\"height: {{generalStats.config.height}}px !important;overflow: auto\"><nvd3 options=generalStats.options data=generalStats.data></nvd3></div>");
-$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html","<div class=timeline style=\"height: {{timeline.config.height}}px !important\"><timeline><timeline-event ng-repeat=\"event in timeline.events\" side=right><timeline-badge class={{event.badgeClass}}><i class=\"glyphicon {{event.badgeIconClass}}\"></i></timeline-badge><timeline-panel class={{event.badgeClass}}><timeline-heading><h4 data-ng-bind-html=event.title></h4></timeline-heading><p data-ng-bind-html=event.content></p></timeline-panel></timeline-event></timeline></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html","<div class=timeline style=\"height: {{timeline.config.height}}px !important\"><timeline><timeline-event ng-repeat=\"event in timeline.events\"><timeline-badge class=actor-avatar><img class=img-responsive data-ng-src={{event.actor.avatar}} alt={{event.actor.first_name}}></timeline-badge><timeline-panel class={{event.badgeClass}}><timeline-heading data-ng-switch data-on=event.app><span class=pull-right am-time-ago=timeline.moment.utc(event.created)></span> <span class=title-header data-ng-switch-when=groups.wall>{{(event.actor.user_id==timeline.currentUser.user_id) ? \"You\" : event.actor.first_name}} posted a status.<h4 data-ng-bind-html=event.title></h4></span> <span class=title-header data-ng-switch-when=groups.jobpost>{{event.actor.first_name}} posted a job.<h4 data-ng-bind-html=event.title></h4></span> <span class=title-header data-ng-switch-when=groups.join><ng-pluralize count=event.actors.length when=\"{ \'0\': \'\', \'1\': \'{{event.actors[0].first_name}} has joined the company.\', \'2\': \'{{event.actors[0].first_name}} and {{event.actors[1].first_name}} have joined the company.\', \'one\': \'{{event.actors[0].first_name}} and {{event.actors[1].first_name}} and one other have joined the company.\', \'other\': \'{{event.actors[0].first_name}} and {{event.actors[1].first_name}} and {} other have joined the company.\' }\" offset=2></ng-pluralize></span> <span class=title-header data-ng-switch-when=videos>{{event.actor.first_name}} posted a video.<br><h5><a data-ng-href={{event.params.video_url}}>Link</a> to video.</h5></span> <span class=title-header data-ng-switch-when=photos>{{event.actor.first_name}} posted a photo.<br><h5><a data-ng-href={{event.params.photo_url}}>Link</a> to photo.</h5></span> <span class=title-header data-ng-switch-when=events>{{event.actor.first_name}} posted an event.<br><h5><a data-ng-href={{event.params.event_url}}>Link</a> to event.</h5></span></timeline-heading><p data-ng-bind-html=event.content></p></timeline-panel></timeline-event></timeline></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html","<div class=top-jobs style=\"height: {{topJobs.config.height}}px !important;overflow: auto\"><table class=\"table table-striped table-responsive\"><tr><th>Position</th><th>Applicants</th></tr><tr data-ng-repeat=\"job in topJobs.data\"><td data-ng-bind=\"job.job_title | limitTo: 20\"></td><td class=text-center data-ng-bind=job.total></td></tr></table></div>");}]);
 
 
@@ -107,12 +107,28 @@ angular.module('jb-zconnect-widget-company').service('timelineService', ['$http'
 angular.module('jb-zconnect-widget-company').provider('jbWidget', function() {
     var self = this;
     var apiRoot = '//jobsglobal.dev/api/v1';
+    var user = {};
+    var company = {};
+    var _DEBUG = false;
+    self.setDebugMode = function(value) {
+        _DEBUG = value;
+    }
+    self.setUser = function(value) {
+        user = value;
+    };
+    self.setCompany = function(value) {
+        company = value;
+    };
     self.setApiRoot = function(value) {
         apiRoot = value;
-    }
+    };
+
     self.$get = [function() {
         return {
-            apiRoot: apiRoot
+            apiRoot: apiRoot,
+            user: user,
+            company: company,
+            _DEBUG: _DEBUG
         }
     }];
 });
@@ -161,39 +177,51 @@ angular.module('jb-zconnect-widget-company').service('adsService', ['$http', '$q
 
 
 
-angular.module('jb-zconnect-widget-company').controller('TopJobsCtrl', ['config', 'topJobsService', function TopJobsCtrl(config, topJobsService) {
+angular.module('jb-zconnect-widget-company').controller('TopJobsCtrl', ['config', 'topJobsService', 'jbWidget', function TopJobsCtrl(config, topJobsService, jbWidget) {
     var topJobs = this;
     topJobs.data = [];
     topJobs.config = config;
-    topJobsService.mostApplied(config.user.user_id, config.company.id, config.limit).then(function(resp) {
-        if (config._DEBUG)
+    topJobsService.mostApplied(jbWidget.user.user_id, jbWidget.company.id, jbWidget.limit).then(function(resp) {
+        if (jbWidget._DEBUG)
             console.log(resp);
         topJobs.data = resp.data;
     }, function(error) {
-        if (config._DEBUG)
+        if (jbWidget._DEBUG)
             console.log(error);
     })
 }]);
 
 
 
-angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'timelineService', function TimelineCtrl(config, timelineService) {
+angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'timelineService', 'jbWidget', 'moment', function TimelineCtrl(config, timelineService, jbWidget, moment) {
     var timeline = this;
     timeline.config = config;
-    timelineService.getTimelineHtml(config.user.user_id, config.company.id).then(function(resp) {
-        if (config._DEBUG)
+    timeline.currentUser = jbWidget.user;
+    timeline.moment = moment;
+
+    timeline.animateElementIn = function($el) {
+        $el.removeClass('hidden');
+        $el.addClass('animated fadeInUp'); // this example leverages animate.css classes
+    };
+
+    timeline.animateElementOut = function($el) {
+        $el.addClass('hidden');
+        $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
+    };
+    timelineService.getTimelineHtml(jbWidget.user.user_id, jbWidget.company.id).then(function(resp) {
+        if (jbWidget._DEBUG)
             console.log(resp);
         timeline.events = resp.data;
     }, function(error) {
-        if (config._DEBUG)
+        if (jbWidget._DEBUG)
             console.log(error);
     })
 }]);
 
 
 
-angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['generalStatsService', 'config',
-    function GeneralStatsCtrl(generalStatsService, config) {
+angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['generalStatsService', 'config', 'jbWidget',
+    function GeneralStatsCtrl(generalStatsService, config, jbWidget) {
         var generalStats = this;
         generalStats.config = config;
         generalStats.options = {
@@ -230,26 +258,26 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['ge
             }
         }
         generalStats.data = [];
-        generalStatsService.applicant(config.user.user_id, config.company.id).then(function(resp) {
-            if (config._DEBUG)
+        generalStatsService.applicant(jbWidget.user.user_id, jbWidget.company.id).then(function(resp) {
+            if (jbWidget._DEBUG)
                 console.log(resp);
             generalStats.data.push({
                 key: 'Applicants',
                 values: resp.data
             });
         }, function(error) {
-            if (config._DEBUG)
+            if (jbWidget._DEBUG)
                 console.log(error);
         });
-        generalStatsService.job(config.user.user_id, config.company.id).then(function(resp) {
-            if (config._DEBUG)
+        generalStatsService.job(jbWidget.user.user_id, jbWidget.company.id).then(function(resp) {
+            if (jbWidget._DEBUG)
                 console.log(resp);
             generalStats.data.push({
                 key: 'Jobs',
                 values: resp.data
             });
         }, function(error) {
-            if (config._DEBUG)
+            if (jbWidget._DEBUG)
                 console.log(error);
         });
     }
@@ -299,15 +327,15 @@ angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', ['config',
 
 
 
-angular.module('jb-zconnect-widget-company').controller('AdsCtrl', ['config', 'adsService', function AdsCtrl(config, adsService) {
+angular.module('jb-zconnect-widget-company').controller('AdsCtrl', ['config', 'adsService', 'jbWidget', function AdsCtrl(config, adsService, jbWidget) {
     var ads = this;
     ads.config = config;
     adsService.getAll().then(function(resp) {
-        if (config._DEBUG)
+        if (jbWidget._DEBUG)
             console.log(resp);
         ads.list = resp;
     }, function(error) {
-        if (config._DEBUG)
+        if (jbWidget._DEBUG)
             console.log(error);
     });
 }]);

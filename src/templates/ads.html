@@ -1,8 +1,8 @@
 <div class="ads" style="height: {{ads.config.height}}px !important">
-    <slick slides-to-show="1" data="ads.list" slides-to-scroll="1" autoplay="true" autoplaySpeed="2" arrows="true" centerMode="true" dots="true" init-onload=true>
+    <slick slides-to-show="1" data="ads.list" slides-to-scroll="1" autoplay="false" autoplaySpeed="2" arrows="true" centerMode="true" dots="true" init-onload=true>
         <div data-ng-repeat="ad in ads.list" class="text-center container">
             <a data-ng-href="{{ad.link}}">
-                <img data-ng-src="{{ad.image}}" alt="{{ad.title}}">
+                <img class="img-responsive" data-ng-src="{{ad.image}}" alt="{{ad.title}}">
                 <span class="ad-message">{{ad.message}}</span>
             </a>
         </div>
