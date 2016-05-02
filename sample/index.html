@@ -43,14 +43,7 @@
     <script type="text/javascript">
     angular
         .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule'])
-        .config(function(dashboardProvider, localStorageServiceProvider, jbWidgetProvider) {
-            jbWidgetProvider.setApiRoot('//jobsglobal.dev/api/v1');
-            jbWidgetProvider.setUser({
-                user_id: 545
-            });
-            jbWidgetProvider.setCompany({
-                id: 67
-            });
+        .config(function(dashboardProvider, localStorageServiceProvider) {
             localStorageServiceProvider.setPrefix('adf.jb-zconnect-widget-company');
             dashboardProvider.structure('1', {
                     rows: [{
@@ -82,8 +75,17 @@
                         }]
                     }]
                 })
-        })
-        .controller('dashboardController', function($scope, localStorageService, $rootScope) {
+        }).run(['jbWidget', function(jbWidget) {
+
+            jbWidget.setApiRoot('//jobsglobal.dev/api/v1');
+            jbWidget.setUser({
+                user_id: 545
+            });
+            jbWidget.setCompany({
+                id: 67
+            });
+        }])
+        .controller('dashboardController', function($scope, localStorageService) {
             var model = localStorageService.get('widgetSampleDashboard');
             if (!model) {
                 var config = {

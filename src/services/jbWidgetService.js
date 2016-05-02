@@ -1,30 +1,23 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').provider('jbWidget', function() {
+angular.module('jb-zconnect-widget-company').factory('jbWidget', function() {
     var self = this;
-    var apiRoot = '//jobsglobal.dev/api/v1';
-    var user = {};
-    var company = {};
-    var _DEBUG = false;
+    self.apiRoot = '//jobsglobal.dev/api/v1';
+    self.user = {};
+    self.company = {};
+    self._DEBUG = false;
     self.setDebugMode = function(value) {
-        _DEBUG = value;
-    }
+        self._DEBUG = value;
+    };
     self.setUser = function(value) {
-        user = value;
+        self.user = value;
     };
     self.setCompany = function(value) {
-        company = value;
+        self.company = value;
     };
     self.setApiRoot = function(value) {
-        apiRoot = value;
+        self.apiRoot = value;
     };
 
-    self.$get = [function() {
-        return {
-            apiRoot: apiRoot,
-            user: user,
-            company: company,
-            _DEBUG: _DEBUG
-        }
-    }];
+    return self;
 });
