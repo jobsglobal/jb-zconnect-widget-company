@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'timelineService', 'jbWidget', 'moment', function TimelineCtrl(config, timelineService, jbWidget, moment) {
+angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'timelineService', 'jbWidget', function TimelineCtrl(config, timelineService, jbWidget) {
     var timeline = this;
     timeline.config = config;
     timeline.currentUser = jbWidget.user;
-    timeline.moment = moment;
 
     timeline.animateElementIn = function($el) {
         $el.removeClass('hidden');
