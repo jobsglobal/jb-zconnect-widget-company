@@ -104,7 +104,7 @@ angular.module('jb-zconnect-widget-company').service('timelineService', ['$http'
 
 
 
-angular.module('jb-zconnect-widget-company').factory('jbWidget', function() {
+angular.module('jb-zconnect-widget-company').service('jbWidget', function() {
     var self = this;
     self.apiRoot = '//jobsglobal.dev/api/v1';
     self.user = {};
