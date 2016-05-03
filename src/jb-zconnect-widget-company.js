@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize', 'angular-timeline', 'angularMoment', 'ngAnimate'])
+angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize', 'angular-timeline', 'angularMoment', 'ngAnimate', 'ngFileUpload', 'ngResource', 'angular-underscore'])
     .config(function(dashboardProvider) {
         Dropzone.autoDiscover = false;
         var widgetConfig = {
@@ -57,6 +57,36 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html',
                 controller: 'TimelineCtrl',
                 controllerAs: 'timeline',
+                config: angular.extend(widgetConfig, {})
+            }))
+            .widget('job-post-form', angular.extend(widget, {
+                title: 'Job Post',
+                description: 'Widget that shows a form for job posting.',
+                templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/job-post.html',
+                controller: 'JobPostCtrl',
+                controllerAs: 'jobPost',
+                config: angular.extend(widgetConfig, {})
+            }))
+            .widget('job-post-form', angular.extend(widget, {
+                title: 'Joomla Module',
+                description: 'Widget that shows a module from specific list of modules.',
+                templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module.html',
+                controller: 'JoomlaModuleCtrl',
+                controllerAs: 'joomlaModule',
+                edit: {
+                    controller: "JoomlaModuleEditCtrl",
+                    controllerAs: "joomlaModuleEdit",
+                    templateUrl: "{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module-edit.html",
+                    resolve: {
+
+                        "joomlaModuleList": ['joomlaModuleService', function(joomlaModuleService) {
+                            return joomlaModuleService.getModules();
+                        }]
+                    },
+                    reload: true,
+                    immediate: true
+                },
+                resolve: {},
                 config: angular.extend(widgetConfig, {})
             }));
     });

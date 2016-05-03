@@ -1,51 +1,55 @@
 {
-    "name": "adf-widget-jb-zconnect-widget-company",
-    "version": "0.1.0",
-    "main": "dist/adf-widget-jb-zconnect-widget-company.js",
-    "ignore": [
-        "bower.json",
-        ".bowerrc",
-        ".jshintrc",
-        ".gitignore",
-        "gulpfile.js",
-        "node_modules",
-        "package.json",
-        "components",
-        "src"
-    ],
-    "keywords": [
-        "dashboard",
-        "widget",
-        "adf",
-        "adf-widget"
-    ],
-    "description": "Widget for showing information of a company.",
-    "dependencies": {
-        "angular-dashboard-framework": ">=0.10",
-        "moment": "^2.13.0",
-        "angular-nvd3": "^1.0.6",
-        "angular-dropzone": "^0.1.2",
-        "animate.css": "^3.5.1",
-        "angular-slick": "^0.2.1",
-        "angular-sanitize": "^1.5.5",
-        "angular-timeline": "^1.6.2",
-        "angular-moment": "^1.0.0-beta.6",
-        "angular-animate": "^1.5.5"
-    },
-    "devDependencies": {
-        "angular-local-storage": ">=0.2"
-    },
-    "overrides": {
-        "bootstrap": {
-            "main": [
-                "less/bootstrap.less",
-                "dist/css/bootstrap.css",
-                "dist/js/bootstrap.js"
-            ]
-        }
-    },
-    "resolutions": {
-        "angular": "1.5.5",
-        "moment": "^2.13.0"
+  "name": "adf-widget-jb-zconnect-widget-company",
+  "version": "0.2.0",
+  "main": "dist/adf-widget-jb-zconnect-widget-company.js",
+  "ignore": [
+    "bower.json",
+    ".bowerrc",
+    ".jshintrc",
+    ".gitignore",
+    "gulpfile.js",
+    "node_modules",
+    "package.json",
+    "components",
+    "src"
+  ],
+  "keywords": [
+    "dashboard",
+    "widget",
+    "adf",
+    "adf-widget"
+  ],
+  "description": "Widget for showing information of a company.",
+  "dependencies": {
+    "angular-dashboard-framework": ">=0.10",
+    "moment": "^2.13.0",
+    "angular-nvd3": "^1.0.6",
+    "angular-dropzone": "^0.1.2",
+    "animate.css": "^3.5.1",
+    "angular-slick": "^0.2.1",
+    "angular-sanitize": "^1.5.5",
+    "angular-timeline": "^1.6.2",
+    "angular-moment": "^1.0.0-beta.6",
+    "angular-animate": "^1.5.5",
+    "ng-file-upload": "^12.0.4",
+    "angular-resource": "^1.5.5",
+    "underscore": "^1.8.3",
+    "angular-underscore": "^0.5.0"
+  },
+  "devDependencies": {
+    "angular-local-storage": ">=0.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
     }
+  },
+  "resolutions": {
+    "angular": "1.5.5",
+    "moment": "^2.13.0"
+  }
 }

@@ -1,0 +1,6 @@
+<div class="joomla-module">
+    <div class="alert alert-info" ng-if="!config.module">
+        Please select a module in the widget configuration
+    </div>
+    <div class="joomla-module" data-ng-bind-html="joomlaModule.renderedHtml" data-ng-if="config.module"></div>
+</div>

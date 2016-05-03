@@ -6,17 +6,26 @@ angular.module('jb-zconnect-widget-company').service('jbWidget', function() {
     self.user = {};
     self.company = {};
     self._DEBUG = false;
-    self.setDebugMode = function(value) {
-        self._DEBUG = value;
+    self.siteName = 'jobsglobal.dev';
+    self.setSiteName = function(siteName) {
+        self.siteName = siteName;
+        return self;
     };
-    self.setUser = function(value) {
-        self.user = value;
+    self.setDebugMode = function(debugMode) {
+        self._DEBUG = debugMode;
+        return self;
     };
-    self.setCompany = function(value) {
-        self.company = value;
+    self.setUser = function(user) {
+        self.user = user;
+        return self;
     };
-    self.setApiRoot = function(value) {
-        self.apiRoot = value;
+    self.setCompany = function(company) {
+        self.company = company;
+        return self;
+    };
+    self.setApiRoot = function(apiRoot) {
+        self.apiRoot = apiRoot;
+        return self;
     };
 
     return self;
