@@ -13,7 +13,11 @@ angular.module('jb-zconnect-widget-company').service('joomlaModuleService', ['$h
     self.getModule = function(moduleName) {
 
         var deferred = $q.defer();
-        $http.jsonp(apiRoot + '/module?callback=JSON_CALLBACK&name=' + moduleName).then(function(resp) {
+        $http.get(apiRoot + '/module?name=' + moduleName, {
+            headers: {
+                "Content-Type": 'text/html'
+            }
+        }).then(function(resp) {
             deferred.resolve(resp.data.data);
         }, function(error) {
             deferred.reject(error);
