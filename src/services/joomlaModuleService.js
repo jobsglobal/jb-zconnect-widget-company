@@ -18,7 +18,7 @@ angular.module('jb-zconnect-widget-company').service('joomlaModuleService', ['$h
                 "Content-Type": 'text/html'
             }
         }).then(function(resp) {
-            deferred.resolve(resp);
+            deferred.resolve(resp.data);
         }, function(error) {
             deferred.reject(error);
         });
