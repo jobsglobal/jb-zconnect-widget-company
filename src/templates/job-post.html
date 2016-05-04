@@ -1,4 +1,4 @@
-<div style="height: {{jobPost.config.height}}px !important;float: left;">
+<div style="height: {{jobPost.config.height}}px !important;float: left;overflow: auto;">
     <div class="alert alert-success alert-jobpost" data-ng-if="jobPost.showMessage && !jobPost.hasError">
         <span data-ng-bind="jobPost.msg"></span>
         <span data-ng-click="closeMessage()" class="pull-right">x</span>

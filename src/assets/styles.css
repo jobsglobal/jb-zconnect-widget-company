@@ -27,9 +27,7 @@
     overflow: hidden;
 }
 
-.job-post-form {
-    overflow: auto;
-}
+.job-post-form {}
 
 .job-post-form .job-url {
     word-wrap: break-word;
