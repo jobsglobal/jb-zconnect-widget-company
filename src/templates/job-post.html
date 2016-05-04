@@ -1,6 +1,10 @@
 <div style="height: {{jobPost.config.height}}px !important;float: left;">
-    <div class="alert alert-success" data-ng-if="jobPost.showMessage">
-        <span>test</span>
+    <div class="alert alert-success alert-jobpost" data-ng-if="jobPost.showMessage && !jobPost.hasError">
+        <span data-ng-bind="jobPost.msg"></span>
+        <span data-ng-click="closeMessage()" class="pull-right">x</span>
+    </div>
+    <div class="alert alert-success alert-jobpost" data-ng-if="jobPost.showMessage && jobPost.hasError">
+        <span data-ng-bind="jobPost.msg"></span>
         <span data-ng-click="closeMessage()" class="pull-right">x</span>
     </div>
     <form class="form-horizontal " name="jobPostForm " data-ng-init="jobPost.addPosition() " novalidate data-ng-submit="jobPost.saveJobPosts(jobPostForm) ">

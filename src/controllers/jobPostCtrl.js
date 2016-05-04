@@ -81,6 +81,8 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
                     jobPost.addPosition();
                     jobPost.loader = false;
                     jobPost.newJobs = [{}];
+                    jobPost.msg = "Successfully posted job.";
+                    jobPost.showMessage = true;
                     //                                location.reload();
                 }, function(errors) {
                     if (jbWidget._DEBUG) {
@@ -134,6 +136,9 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
                     }
                 }
             }, function(error) {
+                jobPost.msg = "Job posting failed. Please try again later.";
+                jobPost.showMessage = true;
+                jobPost.hasError = true;
                 if (jbWidget._DEBUG) {
                     console.log(error);
                 }
@@ -143,6 +148,11 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
             jobPost.newJobs = [];
             jobPost.addPosition();
         };
+        jobPost.closeMessage = function() {
+            jobPost.showMessage = false;
+            jobPost.hasError = false;
+            jobPost.msg = "";
+        }
 
     }
 ]);
