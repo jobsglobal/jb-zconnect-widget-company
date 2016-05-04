@@ -26,3 +26,9 @@
 .widget .actor-avatar {
     overflow: hidden;
 }
+
+.widget .job-post-form {}
+
+.widget.job-post-form .job-url {
+    word-wrap: break-word;
+}
