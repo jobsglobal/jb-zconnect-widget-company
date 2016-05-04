@@ -1,39 +1,43 @@
-<div>
-    <form class="form-horizontal" name="jobPostForm" data-ng-init="jobPost.addPosition()" novalidate data-ng-submit="jobPost.saveJobPosts(jobPostForm)">
-        <div class="modal-body-save1">
-            <div class="col-lg-12 col-sm-12 col-xs-12 profile-tabs">
-                <div class="col-lg-12 col-sm-12 col-xs-12">
-                    <h4 class="default_heading no-margin"><span>Work Information</span></h4>
+<div style="height: {{jobPost.config.height}}px !important;float: left;">
+    <div class="alert alert-success" data-ng-if="jobPost.showMessage">
+        <span>test</span>
+        <span data-ng-click="closeMessage()" class="pull-right">x</span>
+    </div>
+    <form class="form-horizontal " name="jobPostForm " data-ng-init="jobPost.addPosition() " novalidate data-ng-submit="jobPost.saveJobPosts(jobPostForm) ">
+        <div class="modal-body-save1 ">
+            <div class="col-lg-12 col-sm-12 col-xs-12 profile-tabs ">
+                <div class="col-lg-12 col-sm-12 col-xs-12 ">
+                    <h4 class="default_heading no-margin "><span>Work Information</span></h4>
                 </div>
-                <div class="addPosition" data-ng-repeat="job in jobPost.newJobs">
-                    <div class="col-lg-12 col-sm-12 col-xs-12">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                                <h6 class="default_label">Position<span class="require_star">*</span></h6>
-                                <input id="title" name="title{{$index}}" type="text" placeholder="" class="default_input_text title" data-ng-model="job.job_title" data-ng-required="true" data-ng-maxlength="125" maxlength="125">
-                                <span class="error-message" data-ng-show="jobPostForm.title{{$index}}.$error.required && jobPostForm.title{{$index}}.$touched">Please specify position</span>
+                <div class="addPosition " data-ng-repeat="job in jobPost.newJobs ">
+                    <div class="col-lg-12 col-sm-12 col-xs-12 ">
+                        <div class="row ">
+                            <div class="col-lg-6 col-sm-6 col-xs-12 ">
+                                <h6 class="default_label ">Position<span class="require_star ">*</span></h6>
+                                <input id="title " name="title{{$index}} " type="text " placeholder=" " class="default_input_text title " data-ng-model="job.job_title " data-ng-required="true " data-ng-maxlength="125 " maxlength="125 ">
+                                <span class="error-message " data-ng-show="jobPostForm.title{{$index}}.$error.required && jobPostForm.title{{$index}}.$touched ">Please specify position</span>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-xs-12">
-                                <h6 class="default_label">Experience<span class="require_star">*</span></h6>
-                                <div class="col-lg-12 col-sm-12 col-xs-12">
-                                    <div class="row select-container">
-                                        <select name="experience{{$index}}" class="default_input_select yearsofexp" data-ng-model="job.experience" data-ng-options="i as i for i in jobPost.expRange" data-ng-required="true">
-                                            <option value="" disabled selected>Select Experience</option>
+                            <div class="col-lg-6 col-sm-6 col-xs-12 ">
+                                <h6 class="default_label ">Experience<span class="require_star ">*</span></h6>
+                                <div class="col-lg-12 col-sm-12 col-xs-12 ">
+                                    <div class="row select-container ">
+                                        <select name="experience{{$index}} " class="default_input_select yearsofexp " data-ng-model="job.experience " data-ng-options="i as i for i in jobPost.expRange " data-ng-required="true ">
+                                            <option value=" " disabled selected>Select Experience</option>
                                         </select>
-                                        <span class="arrow" aria-hidden="true"></span>
+                                        <span class="arrow " aria-hidden="true "></span>
                                     </div>
                                 </div>
-                                <span class="error-message" data-ng-show="jobPostForm.experience{{$index}}.$error.required && jobPostForm.experience{{$index}}.$touched">Please specify experience.</span>
+                                <span class="error-message " data-ng-show="jobPostForm.experience{{$index}}.$error.required && jobPostForm.experience{{$index}}.$touched ">Please specify experience.</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-sm-12 col-xs-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-3 col-xs-12">
-                                <h6 class="default_label">Currency</h6>
-                                <div class="col-lg-12 col-sm-12 col-xs-12">
-                                    <div class="row select-container">
-                                        <select name="currency{{$index}}" class="default_input_select" data-ng-model="job.currency" data-ng-required="(job.salary > 0)" data-ng-options="currency.currency_code as currency.currency_code for currency in jobPost.currencies ">
+                    <div class="col-lg-12 col-sm-12 col-xs-12 ">
+                        <div class="row ">
+                            <div class="col-lg-3 col-sm-3 col-xs-12 ">
+                                <h6 class="default_label ">Currency</h6>
+                                <div class="col-lg-12 col-sm-12 col-xs-12 ">
+                                    <div class="row select-container ">
+                                        <select name="currency{{$index}} " class="default_input_select " data-ng-model="job.currency " data-ng-required="(job.salary> 0)" data-ng-options="currency.currency_code as currency.currency_code for currency in jobPost.currencies ">
                                             <option value="" disabled selected>Select currency</option>
                                         </select>
                                         <span class="arrow" aria-hidden="true"></span>

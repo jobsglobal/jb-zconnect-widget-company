@@ -3,6 +3,7 @@
 angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config', 'jbWidget', '$q', 'jobPostService', '$rootScope', 'resourceService',
     function JobPostCtrl(config, jbWidget, $q, jobPostService, $rootScope, resourceService) {
         var jobPost = this;
+        jobPost.config = config;
         jobPost.loader = false;
         jobPost.jobImages = [];
         jobPost.siteName = jbWidget.siteName;
