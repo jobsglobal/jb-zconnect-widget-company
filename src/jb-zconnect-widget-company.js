@@ -21,6 +21,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html',
                 controller: 'GeneralStatsCtrl',
                 controllerAs: 'generalStats',
+                styleClass: 'general-stats',
                 config: angular.extend(widgetConfig, {})
             }))
             .widget('top-jobs', angular.extend(widget, {
@@ -29,6 +30,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html',
                 controller: 'TopJobsCtrl',
                 controllerAs: 'topJobs',
+                styleClass: 'top-jobs',
                 config: angular.extend(widgetConfig, {})
 
             }))
@@ -38,6 +40,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html',
                 controller: 'DropCvCtrl',
                 controllerAs: 'dropCv',
+                styleClass: 'drop-cv',
                 reload: false,
                 config: angular.extend(widgetConfig, {})
 
@@ -48,6 +51,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html',
                 controller: 'AdsCtrl',
                 controllerAs: 'ads',
+                styleClass: 'ads',
                 config: angular.extend(widgetConfig, {})
 
             }))
@@ -57,6 +61,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html',
                 controller: 'TimelineCtrl',
                 controllerAs: 'timeline',
+                styleClass: 'timeline',
                 config: angular.extend(widgetConfig, {})
             }))
             .widget('job-post-form', angular.extend(widget, {
@@ -65,28 +70,29 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/job-post.html',
                 controller: 'JobPostCtrl',
                 controllerAs: 'jobPost',
-                config: angular.extend(widgetConfig, {})
-            }))
-            .widget('job-post-form', angular.extend(widget, {
-                title: 'Joomla Module',
-                description: 'Widget that shows a module from specific list of modules.',
-                templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module.html',
-                controller: 'JoomlaModuleCtrl',
-                controllerAs: 'joomlaModule',
-                edit: {
-                    controller: "JoomlaModuleEditCtrl",
-                    controllerAs: "joomlaModuleEdit",
-                    templateUrl: "{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module-edit.html",
-                    resolve: {
-
-                        "joomlaModuleList": ['joomlaModuleService', function(joomlaModuleService) {
-                            return joomlaModuleService.getModules();
-                        }]
-                    },
-                    reload: true,
-                    immediate: true
-                },
-                resolve: {},
+                styleClass: 'job-post-form',
                 config: angular.extend(widgetConfig, {})
             }));
+        // .widget('job-post-form', angular.extend(widget, {
+        //     title: 'Joomla Module',
+        //     description: 'Widget that shows a module from specific list of modules.',
+        //     templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module.html',
+        //     controller: 'JoomlaModuleCtrl',
+        //     controllerAs: 'joomlaModule',
+        //     edit: {
+        //         controller: "JoomlaModuleEditCtrl",
+        //         controllerAs: "joomlaModuleEdit",
+        //         templateUrl: "{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module-edit.html",
+        //         resolve: {
+
+        //             "joomlaModuleList": ['joomlaModuleService', function(joomlaModuleService) {
+        //                 return joomlaModuleService.getModules();
+        //             }]
+        //         },
+        //         reload: true,
+        //         immediate: true
+        //     },
+        //     resolve: {},
+        //     config: angular.extend(widgetConfig, {})
+        // }));
     });

@@ -13,29 +13,9 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
         jobPost.expRange.shift();
         jobPost.currentUser = jbWidget.user;
         jobPost.newJobs = [{}];
-        // Resource.currencyList.get().then(function(resp) {
         jobPost.currencies = jbWidget.currentcies;
-        // }, function(error) {
-        //     if (jbWidget._DEBUG) {
-        //         console.log(error);
-        //     }
-
-        // });
-        // Resource.industryList.get().then(function(resp) {
         jobPost.industries = jbWidget.industries;
-        // }, function(error) {
-        //     if (jbWidget._DEBUG) {
-        //         console.log(error);
-        //     }
-        // });
-
-        // Resource.countryList.get().then(function(resp) {
         jobPost.countries = jbWidget.countries;
-        // }, function(error) {
-        //     if (jbWidget._DEBUG) {
-        //         console.log(error);
-        //     }
-        // });
         jobPost.uploadJobPhoto = function(file, job) {
             jobPostService.uploadPhoto(jobPost.currentUser.user_id, jbWidget.company.id, job.id, job.image)
                 .then(function(resp) {
@@ -79,7 +59,7 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
                     jobPost.newJobs = [];
                     jobPost.addPosition();
                     jobPost.loader = false;
-                    angular.element('#jobPostModal').modal('hide');
+                    jobPost.newJobs = [{}];
                     //                                location.reload();
                 }, function(errors) {
                     if (jbWidget._DEBUG) {
