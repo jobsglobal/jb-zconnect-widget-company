@@ -1,4 +1,4 @@
-.widget .dropzone {
+.dropzone {
     border: 2px dashed #0087F7;
     border-radius: 5px;
     background: white;
@@ -6,29 +6,29 @@
     box-sizing: border-box;
 }
 
-.widget .dropzone .dz-message {
+.dropzone .dz-message {
     text-align: center !important;
 }
 
-.widget .ads img {
+.ads img {
     margin: auto;
     height: 100%;
 }
 
-.widget .timeline {
+.timeline {
     overflow: auto;
 }
 
-.widget .slick-dots {
+.slick-dots {
     bottom: -25px !important;
 }
 
-.widget .actor-avatar {
+.actor-avatar {
     overflow: hidden;
 }
 
-.widget .job-post-form {}
+.job-post-form {}
 
-.widget.job-post-form .job-url {
+.job-post-form .job-url {
     word-wrap: break-word;
 }

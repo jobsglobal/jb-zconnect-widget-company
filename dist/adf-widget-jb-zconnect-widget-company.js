@@ -340,7 +340,7 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
         jobPost.expRange = $rootScope._(51).range();
         jobPost.expRange.shift();
         jobPost.currentUser = jbWidget.user;
-        jobPost.newJobs = [{}];
+        jobPost.newJobs = [];
         resourceService.currencyList.get().then(function(resp) {
             jobPost.currencies = resp;
         }, function(error) {
