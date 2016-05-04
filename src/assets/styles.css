@@ -1,4 +1,4 @@
-.dropzone {
+.widget .dropzone {
     border: 2px dashed #0087F7;
     border-radius: 5px;
     background: white;
@@ -6,23 +6,23 @@
     box-sizing: border-box;
 }
 
-.dropzone .dz-message {
+.widget .dropzone .dz-message {
     text-align: center !important;
 }
 
-.ads img {
+.widget .ads img {
     margin: auto;
     height: 100%;
 }
 
-.timeline {
+.widget .timeline {
     overflow: auto;
 }
 
-.slick-dots {
+.widget .slick-dots {
     bottom: -25px !important;
 }
 
-.actor-avatar {
+.widget .actor-avatar {
     overflow: hidden;
 }

@@ -341,9 +341,29 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
         jobPost.expRange.shift();
         jobPost.currentUser = jbWidget.user;
         jobPost.newJobs = [{}];
-        jobPost.currencies = jbWidget.currentcies;
-        jobPost.industries = jbWidget.industries;
-        jobPost.countries = jbWidget.countries;
+        resourceService.currencyList.get().then(function(resp) {
+            jobPost.currencies = resp;
+        }, function(error) {
+            if (jbWidget._DEBUG) {
+                console.log(error);
+            }
+
+        });
+        resourceService.industryList.get().then(function(resp) {
+            jobPost.industries = resp;
+        }, function(error) {
+            if (jbWidget._DEBUG) {
+                console.log(error);
+            }
+        });
+
+        resourceService.countryList.get().then(function(resp) {
+            jobPost.countries = resp;
+        }, function(error) {
+            if (jbWidget._DEBUG) {
+                console.log(error);
+            }
+        });
         jobPost.uploadJobPhoto = function(file, job) {
             jobPostService.uploadPhoto(jobPost.currentUser.user_id, jbWidget.company.id, job.id, job.image)
                 .then(function(resp) {
