@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config', 'jbWidget', '$q', 'jobPostService', '$rootScope',
-    function JobPostCtrl(config, jbWidget, $q, jobPostService, $rootScope) {
+angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config', 'jbWidget', '$q', 'jobPostService', '$rootScope', 'resourceService',
+    function JobPostCtrl(config, jbWidget, $q, jobPostService, $rootScope, resourceService) {
         var jobPost = this;
         jobPost.loader = false;
         jobPost.jobImages = [];
@@ -75,48 +75,48 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
         };
         jobPost.getStates = function(country) {
 
-            // Resource.stateList.get(country.id).then(function(resp) {
-            //     jobPost.states = resp;
-            // }, function(error) {
-            //     if (jbWidget._DEBUG) {
-            //         console.log(error);
-            //     }
-            // });
+            resourceService.stateList.get(country.id).then(function(resp) {
+                jobPost.states = resp;
+            }, function(error) {
+                if (jbWidget._DEBUG) {
+                    console.log(error);
+                }
+            });
         };
 
         jobPost.getCities = function(state) {
 
-            // Resource.cityList.get(jobPost.jobsLocation.country.id, state.id).then(function(resp) {
-            //     jobPost.cities = resp;
-            // }, function(error) {
-            //     if (jbWidget._DEBUG) {
-            //         console.log(error);
-            //     }
-            // });
+            resourceService.cityList.get(jobPost.jobsLocation.country.id, state.id).then(function(resp) {
+                jobPost.cities = resp;
+            }, function(error) {
+                if (jbWidget._DEBUG) {
+                    console.log(error);
+                }
+            });
         };
         jobPost.addPosition = function(form) {
-            // Resource.uniqId.get().then(function(resp) {
-            //     if (resp.$resolved) {
+            resourceService.uniqId.get().then(function(resp) {
+                if (resp.$resolved) {
 
-            //         var uniqueId = resp.data;
-            //         var url = render({ company: jobPost.companyName, uniqueId: uniqueId });
-            //         var newPosition = {
-            //             id: uniqueId,
-            //             url: url,
-            //             fullUrl: 'http://' + jobPost.siteName + '/' + url,
-            //             image: "/components/com_media/img/job-default-logo.png"
-            //         };
-            //         if (form && form.$valid) {
-            //             jobPost.newJobs.push(newPosition);
-            //         } else {
-            //             jobPost.newJobs.push(newPosition);
-            //         }
-            //     }
-            // }, function(error) {
-            //     if (jbWidget._DEBUG) {
-            //         console.log(error);
-            //     }
-            // });
+                    var uniqueId = resp.data;
+                    var url = render({ company: jobPost.companyName, uniqueId: uniqueId });
+                    var newPosition = {
+                        id: uniqueId,
+                        url: url,
+                        fullUrl: 'http://' + jobPost.siteName + '/' + url,
+                        image: "/components/com_media/img/job-default-logo.png"
+                    };
+                    if (form && form.$valid) {
+                        jobPost.newJobs.push(newPosition);
+                    } else {
+                        jobPost.newJobs.push(newPosition);
+                    }
+                }
+            }, function(error) {
+                if (jbWidget._DEBUG) {
+                    console.log(error);
+                }
+            });
         };
         jobPost.cancelJobPost = function() {
             jobPost.newJobs = [];
