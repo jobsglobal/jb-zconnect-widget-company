@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', ['config', 'dropCvService', '$log', function DropCvCtrl(config, dropCvService, $log) {
+angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', ['config', 'dropCvService', '$log', 'jbWidget', function DropCvCtrl(config, dropCvService, $log, jbWidget) {
     var dropCv = this;
     dropCv.config = config;
+    var apiRoot = jbWidget.apiRoot;
     dropCv.dzAddedFile = function(file) {
         $log.log(file);
     };
@@ -11,14 +12,18 @@ angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', ['config',
         $log.log(errorMessage);
     };
 
+
+    dropCv.dzSuccess = function() {
+        console.log(argument);
+    };
     dropCv.dropzoneConfig = {
         init: function() {},
         parallelUploads: 1,
         maxFileSize: 5,
-        url: config.apiRoot + '/signup/upload/cv',
+        url: apiRoot + '/signup/upload/cv',
         method: 'post',
         filesizeBase: 1024,
-        paramName: 'cv',
+        paramName: 'fileToUpload',
         uploadMultiple: false,
         addRemoveLinks: true,
         clickable: true,
@@ -35,7 +40,8 @@ angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', ['config',
         dictCancelUpload: "Cancel",
         dictCancelUploadConfirmation: "Are you sure you want to cancel upload?",
         dictRemoveFile: "Remove",
-        dictMaxFilesExceeded: null
+        dictMaxFilesExceeded: null,
+
 
     };
 }]);

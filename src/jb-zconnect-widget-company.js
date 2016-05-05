@@ -72,6 +72,15 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
                 controllerAs: 'jobPost',
                 styleClass: 'job-post-form',
                 config: angular.extend(widgetConfig, {})
+            }))
+            .widget('applicant-stats', angular.extend(widget, {
+                title: 'Applicant Stats',
+                description: 'Widget that shows visual statistics for total applicants of company.',
+                templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/applicant-stats.html',
+                controller: 'ApplicantStatsCtrl',
+                controllerAs: 'applicantStats',
+                styleClass: 'applicant-stats',
+                config: angular.extend(widgetConfig, {})
             }));
         // .widget('job-post-form', angular.extend(widget, {
         //     title: 'Joomla Module',
