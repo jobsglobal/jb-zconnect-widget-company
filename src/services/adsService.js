@@ -1,5 +1,5 @@
-angular.module('jb-zconnect-widget-company').service('adsService', ['$http', '$q', 'dashboard', 'jbWidget', function($http, $q, dashboard, jbWidget) {
-    var apiRoot = jbWidget.apiRoot;
+angular.module('jb-zconnect-widget-company').service('adsService', ['$http', '$q', 'ngZconnected', function($http, $q, ngZconnected) {
+    var apiRoot = ngZconnected.apiRoot;
     var self = this;
     self.getAll = function() {
         var deferred = $q.defer();
@@ -7,8 +7,7 @@ angular.module('jb-zconnect-widget-company').service('adsService', ['$http', '$q
             deferred.resolve(resp.data);
         }, function(error) {
             deferred.reject(error);
-        })
+        });
         return deferred.promise;
     };
-
 }]);

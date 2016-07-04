@@ -1,0 +1,24 @@
+<div class="login">
+    <div class="arrow-up"></div>
+    <div class="formholder">
+        <div class="randompad">
+            <form name="loginForm" data-ng-submit="login(loginForm)" novalidate>
+                <fieldset>
+
+                    <label for="email">Email</label>
+                    <input name="username" type="email" data-ng-model="credentials.username" placeholder="example@example.com" data-ng-required="true">
+                    <span class="error-message" data-ng-show="loginForm.username.$error.required && (loginForm.$submitted || loginForm.username.$touched)">Please specify email.</span>
+                    <span class="error-message" data-ng-show="loginForm.username.$error.email && (loginForm.$submitted || loginForm.username.$touched)">Please specify a valid email.</span>
+
+                    <label for="password">Password</label>
+                    <input name="password" type="password" data-ng-model="credentials.password" data-ng-minlength="4" maxlength="50">
+                    <span class="error-message" data-ng-show="loginForm.password.$error.required && (loginForm.$submitted || loginForm.password.$touched)">Please specify password.</span>
+                    <span class="error-message" data-ng-show="loginForm.password.$error.minlength && (loginForm.$submitted || loginForm.password.$touched)">Minimum password is 4.</span>
+
+                    <input type="submit" value="Login">
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

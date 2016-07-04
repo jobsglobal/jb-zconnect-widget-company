@@ -7,7 +7,7 @@ angular.module('jb-zconnect-widget-company').service('applicantStatsService', ['
             deferred.resolve(resp.data);
         }, function(error) {
             deferred.reject(error);
-        })
+        });
         return deferred.promise;
     };
 
@@ -17,7 +17,7 @@ angular.module('jb-zconnect-widget-company').service('applicantStatsService', ['
             deferred.resolve(resp.data);
         }, function(error) {
             deferred.reject(error);
-        })
+        });
         return deferred.promise;
     };
 }]);
