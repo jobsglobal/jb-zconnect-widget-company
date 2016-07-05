@@ -54,10 +54,10 @@ gulp.task('sample', ['templates'], function() {
             dependencies: true
         }))
         .pipe($.inject(files))
-        .pipe(gulp.dest('.tmp/dist'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('.tmp/dist'));
     gulp.src('sample/views/*.html')
-      .pipe(gulp.dest('.tmp/dist/views'));
+      .pipe(gulp.dest('.tmp/dist/views'))
+      .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
