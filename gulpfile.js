@@ -5,7 +5,7 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var jsReporter = require('jshint-stylish');
 var annotateAdfPlugin = require('ng-annotate-adf-plugin');
-var pkg = require('./package.json');
+var pkg = require('./bower.json');
 
 var annotateOptions = {
     plugin: [
