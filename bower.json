@@ -22,14 +22,13 @@
   "description": "Widget for showing information of a company.",
   "dependencies": {
     "angular-dashboard-framework": ">=0.10",
-    "moment": "^2.13.0",
     "angular-nvd3": "^1.0.6",
     "angular-dropzone": "^0.1.2",
     "animate.css": "^3.5.1",
     "angular-slick": "^0.2.1",
     "angular-sanitize": "^1.5.5",
     "angular-timeline": "^1.6.2",
-    "angular-moment": "^1.0.0-beta.6",
+    "angular-moment": "^0.10.3",
     "angular-animate": "^1.5.5",
     "underscore": "^1.8.3",
     "angular-underscore": "^0.5.0",
@@ -49,8 +48,7 @@
     }
   },
   "resolutions": {
-    "angular": "^1.5.7",
-    "moment": "^2.13.0",
-    "jquery": "1.9.1 - 2"
+    "angular-moment": "^1.0.0-beta.6",
+    "angular": "^1.5.7"
   }
 }
