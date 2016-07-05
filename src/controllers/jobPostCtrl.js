@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config', 'jbWidget', '$q', 'jobPostService', '$rootScope', 'resourceService',
-  function (config, jbWidget, $q, jobPostService, $rootScope, resourceService) {
+angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config', 'jbWidget', '$q', 'jobService', '$rootScope', 'resourceService', 'currentUser',
+  function (config, jbWidget, $q, jobService, $rootScope, resourceService, currentUser) {
     var jobPost = this;
     jobPost.config = config;
     jobPost.loader = false;
@@ -12,7 +12,7 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
     var render = $rootScope._(urlTemplate).template();
     jobPost.expRange = $rootScope._(51).range();
     jobPost.expRange.shift();
-    jobPost.currentUser = jbWidget.user;
+    jobPost.currentUser = currentUser;
     jobPost.newJobs = [];
     resourceService.currencyList.get().then(function (resp) {
       jobPost.currencies = resp;
@@ -38,7 +38,7 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
       }
     });
     jobPost.uploadJobPhoto = function (file, job) {
-      jobPostService.uploadPhoto(jobPost.currentUser.user_id, jbWidget.company.id, job.id, job.image)
+      jobService.uploadPhoto(jobPost.currentUser.user_id, jbWidget.company.id, job.id, job.image)
         .then(function (resp) {
           job.image = resp.data.data;
         }, function (error) {
@@ -65,7 +65,7 @@ angular.module('jb-zconnect-widget-company').controller('JobPostCtrl', ['config'
             job.city = jobPost.jobsLocation.city.name || '';
           }
           console.log(job);
-          promises.push(jobPostService.save(jobPost.currentUser.user_id, jbWidget.company.id, job));
+          promises.push(jobService.save(jobPost.currentUser.user_id, jbWidget.company.id, job));
         });
         $q.all(promises).then(function (resps) {
           console.log(resps);

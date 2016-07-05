@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'timelineService', 'jbWidget', 'ngZconnected', function TimelineCtrl(config, timelineService, jbWidget, ngZconnected) {
+angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'companyService', 'jbWidget', 'ngZconnected', function (config, companyService, jbWidget, ngZconnected) {
   var timeline = this;
   timeline.config = config;
   timeline.currentUser = jbWidget.user;
@@ -14,7 +14,7 @@ angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config
     $el.addClass('hidden');
     $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
   };
-  timelineService.getTimelineHtml(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
+  companyService.company.getTimelineHtml(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
     if (ngZconnected._DEBUG)
       console.log(resp);
     timeline.events = resp.data;

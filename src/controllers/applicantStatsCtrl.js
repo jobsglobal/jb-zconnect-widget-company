@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['config', 'jobService', 'jbWidget', 'ngZconnected', function (config, jobService, jbWidget, ngZconnected) {
+angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['config', 'jobService', 'jbWidget', 'ngZconnected', 'currentUser', function (config, jobService, jbWidget, ngZconnected, currentUser) {
   var applicantStats = this;
   applicantStats.config = config;
   applicantStats.options = {
@@ -38,9 +38,9 @@ angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['
       },
 
     }
-  }
+  };
   applicantStats.data = [];
-  jobService.applicants.getStats(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
+  jobService.applicants.getStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
     applicantStats.data.push({
       key: 'Applicants',
       values: resp.data

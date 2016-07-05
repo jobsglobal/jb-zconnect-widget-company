@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['companyService', 'config', 'jbWidget', 'ngZconnected',
-  function (companyService, config, jbWidget, ngZconnected) {
+angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['companyService', 'config', 'jbWidget', 'ngZconnected', 'currentUser',
+  function (companyService, config, jbWidget, ngZconnected, currentUser) {
     var generalStats = this;
     generalStats.config = config;
     generalStats.options = {
@@ -33,12 +33,12 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['co
         },
         "y": function (data) {
           return parseInt(data.count);
-        },
+        }
 
       }
-    }
+    };
     generalStats.data = [];
-    companyService.job.getApplicantGeneralStats(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
+    companyService.job.getApplicantGeneralStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
       if (ngZconnected._DEBUG)
         console.log(resp);
       generalStats.data.push({
@@ -49,7 +49,7 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['co
       if (ngZconnected._DEBUG)
         console.log(error);
     });
-    companyService.job.getJobGeneralStats(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
+    companyService.job.getJobGeneralStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
       if (ngZconnected._DEBUG)
         console.log(resp);
       generalStats.data.push({
