@@ -3,6 +3,7 @@
 angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzone', 'slick', 'ngSanitize', 'angular-timeline', 'angularMoment', 'ngAnimate', 'ngFileUpload', 'ngResource', 'angular-underscore', 'ngZconnected'])
   .config(function (dashboardProvider) {
     Dropzone.autoDiscover = false;
+    var widgetTemplatesPath = '{widgetsPath}/jb-zconnect-widget-company/src/templates/';
     var widgetConfig = {
       height: 225,
       _DEBUG: false
@@ -22,7 +23,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('general-stats', angular.extend(widget, {
         title: 'Company General Stats',
         description: 'Widget for showing general information for company.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html',
+        templateUrl: widgetTemplatesPath + 'general-stats.html',
         controller: 'GeneralStatsCtrl',
         controllerAs: 'generalStats',
         styleClass: 'general-stats',
@@ -31,7 +32,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('top-jobs', angular.extend(widget, {
         title: 'Company Top Jobs',
         description: 'Widget for showing most applied jobs from company.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/top-jobs.html',
+        templateUrl: widgetTemplatesPath + 'top-jobs.html',
         controller: 'TopJobsCtrl',
         controllerAs: 'topJobs',
         styleClass: 'top-jobs',
@@ -41,7 +42,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('drop-cv', angular.extend(widget, {
         title: 'Company CV Dropzone',
         description: 'Widget that provides a dropzone area for uploading applicants cv.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html',
+        templateUrl: widgetTemplatesPath + 'drop-cv.html',
         controller: 'DropCvCtrl',
         controllerAs: 'dropCv',
         styleClass: 'drop-cv',
@@ -52,7 +53,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('ads', angular.extend(widget, {
         title: 'Advertisements',
         description: 'Widget that shows advertisements.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html',
+        templateUrl: widgetTemplatesPath + 'ads.html',
         controller: 'AdsCtrl',
         controllerAs: 'ads',
         styleClass: 'ads',
@@ -62,7 +63,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('timeline', angular.extend(widget, {
         title: 'Timeline',
         description: 'Widget that shows company timeline/activities.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/timeline.html',
+        templateUrl: widgetTemplatesPath + 'timeline.html',
         controller: 'TimelineCtrl',
         controllerAs: 'timeline',
         styleClass: 'timeline',
@@ -71,7 +72,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('job-post-form', angular.extend(widget, {
         title: 'Job Post',
         description: 'Widget that shows a form for job posting.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/job-post.html',
+        templateUrl: widgetTemplatesPath + 'job-post.html',
         controller: 'JobPostCtrl',
         controllerAs: 'jobPost',
         styleClass: 'job-post-form',
@@ -80,7 +81,7 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
       .widget('applicant-stats', angular.extend(widget, {
         title: 'Applicant Stats',
         description: 'Widget that shows visual statistics for total applicants of company.',
-        templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/applicant-stats.html',
+        templateUrl: widgetTemplatesPath + 'applicant-stats.html',
         controller: 'ApplicantStatsCtrl',
         controllerAs: 'applicantStats',
         styleClass: 'applicant-stats',
@@ -89,13 +90,13 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
     // .widget('job-post-form', angular.extend(widget, {
     //     title: 'Joomla Module',
     //     description: 'Widget that shows a module from specific list of modules.',
-    //     templateUrl: '{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module.html',
+    //     templateUrl: widgetTemplatesPath + 'joomla-module.html',
     //     controller: 'JoomlaModuleCtrl',
     //     controllerAs: 'joomlaModule',
     //     edit: {
     //         controller: "JoomlaModuleEditCtrl",
     //         controllerAs: "joomlaModuleEdit",
-    //         templateUrl: "{widgetsPath}/jb-zconnect-widget-company/src/templates/joomla-module-edit.html",
+    //         templateUrl: widgetTemplatesPath + "joomla-module-edit.html",
     //         resolve: {
 
     //             "joomlaModuleList": ['joomlaModuleService', function(joomlaModuleService) {
