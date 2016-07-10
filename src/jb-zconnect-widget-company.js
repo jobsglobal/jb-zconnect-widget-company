@@ -37,7 +37,6 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
         controllerAs: 'topJobs',
         styleClass: 'top-jobs',
         config: angular.extend(widgetConfig, {})
-
       }))
       .widget('drop-cv', angular.extend(widget, {
         title: 'Company CV Dropzone',
@@ -87,28 +86,6 @@ angular.module('jb-zconnect-widget-company', ['adf.provider', 'nvd3', 'ngDropzon
         styleClass: 'applicant-stats',
         config: angular.extend(widgetConfig, {})
       }));
-    // .widget('job-post-form', angular.extend(widget, {
-    //     title: 'Joomla Module',
-    //     description: 'Widget that shows a module from specific list of modules.',
-    //     templateUrl: widgetTemplatesPath + 'joomla-module.html',
-    //     controller: 'JoomlaModuleCtrl',
-    //     controllerAs: 'joomlaModule',
-    //     edit: {
-    //         controller: "JoomlaModuleEditCtrl",
-    //         controllerAs: "joomlaModuleEdit",
-    //         templateUrl: widgetTemplatesPath + "joomla-module-edit.html",
-    //         resolve: {
-
-    //             "joomlaModuleList": ['joomlaModuleService', function(joomlaModuleService) {
-    //                 return joomlaModuleService.getModules();
-    //             }]
-    //         },
-    //         reload: true,
-    //         immediate: true
-    //     },
-    //     resolve: {},
-    //     config: angular.extend(widgetConfig, {})
-    // }));
   }).provider('jbWidget', function () {
   var self = this;
   var apiRoot = '//jobsglobal.dev/api/v1';
