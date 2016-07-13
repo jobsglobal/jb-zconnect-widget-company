@@ -46,6 +46,7 @@
     angular
             .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule', 'ngZconnected', 'ui.router'])
             .config(function (dashboardProvider, localStorageServiceProvider, ngZconnectedProvider, $stateProvider, $urlRouterProvider, authenticationInterceptorProvider, jbWidgetProvider) {
+                dashboardProvider.customWidgetTemplatePath('src/templates/widget.html');
                 jbWidgetProvider.setCompany({
                     id: 182
                 });
@@ -108,7 +109,7 @@
                             columns: [{
                                 styleClass: 'col-md-8',
                                 widgets: [{
-                                    type: 'job-post-form',
+                                    type: 'drop-cv',
                                     config: config
                                 }]
                             }, {
