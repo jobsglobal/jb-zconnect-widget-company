@@ -13,168 +13,168 @@
     <!-- endinject -->
     <!-- inlince css -->
     <style type="text/css">
-    body {
-        padding-top: 60px;
-    }
-    
-    .error-message {
-        color: red;
-    }
+        body {
+            padding-top: 60px;
+        }
+
+        .error-message {
+            color: red;
+        }
     </style>
 </head>
 
 <body ng-app="adfWidgetSample">
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">ADF Widget Sample</a>
-            </div>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">ADF Widget Sample</a>
         </div>
     </div>
-    <div class="container" data-ui-view>
-    </div>
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- inject:js -->
-    <!-- endinject -->
-    <script type="text/javascript">
+</div>
+<div class="container" data-ui-view>
+</div>
+<!-- bower:js -->
+<!-- endbower -->
+<!-- inject:js -->
+<!-- endinject -->
+<script type="text/javascript">
     angular
-        .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule', 'ngZconnected', 'ui.router'])
-        .config(function(dashboardProvider, localStorageServiceProvider, ngZconnectedProvider, $stateProvider, $urlRouterProvider, authenticationInterceptorProvider, jbWidgetProvider) {
-            jbWidgetProvider.setCompany({
-                id: 182
-            });
-            localStorageServiceProvider.setPrefix('adf.jb-zconnect-widget-company');
-            ngZconnectedProvider.setApiUrl('//jobsglobal.dev/api/v1');
-            dashboardProvider.structure('1', {
-                    rows: [{
-                        columns: [{
-                            styleClass: 'col-md-12',
-                            widgets: []
-                        }]
-                    }]
-                })
-                .structure('4-8', {
-                    rows: [{
-                        columns: [{
-                            styleClass: 'col-md-4',
-                            widgets: []
-                        }, {
-                            styleClass: 'col-md-8',
-                            widgets: []
-                        }]
-                    }, {
-                        columns: [{
-                            styleClass: 'col-md-4',
-                            widgets: []
-                        }, {
-                            styleClass: 'col-md-4',
-                            widgets: []
-                        }, {
-                            styleClass: 'col-md-4',
-                            widgets: []
-                        }]
-                    }]
+            .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule', 'ngZconnected', 'ui.router'])
+            .config(function (dashboardProvider, localStorageServiceProvider, ngZconnectedProvider, $stateProvider, $urlRouterProvider, authenticationInterceptorProvider, jbWidgetProvider) {
+                jbWidgetProvider.setCompany({
+                    id: 182
                 });
-            $urlRouterProvider.otherwise('/');
-            $stateProvider
-                .state('home', {
-                    url: '/',
-                    templateUrl: '/views/home.html',
-                    controller: 'dashboardController'
-                })
-                .state('login', {
-                    url: '/login',
-                    templateUrl: '/views/login.html',
-                    controller: 'loginController'
-                });
-            authenticationInterceptorProvider.error(['$location', function($location) {
-                $location.path('/login');
-            }]);
-        })
-        .controller('dashboardController', function($scope, localStorageService) {
-            var model = localStorageService.get('widgetSampleDashboard');
-            if (!model) {
-                var config = {
-                    height: 225
-                };
-                model = {
-                    rows: [{
-                        columns: [{
-                            styleClass: 'col-md-8',
-                            widgets: [{
-                                type: 'ads',
-                                config: config
+                localStorageServiceProvider.setPrefix('adf.jb-zconnect-widget-company');
+                ngZconnectedProvider.setApiUrl('//jobsglobal.dev/api/v1');
+                dashboardProvider.structure('1', {
+                            rows: [{
+                                columns: [{
+                                    styleClass: 'col-md-12',
+                                    widgets: []
+                                }]
                             }]
-                        }, {
-                            styleClass: 'col-md-4',
-                            widgets: [{
-                                type: 'applicant-stats',
-                                config: config
-                            }]
-                        }]
-                    }, {
-                        columns: [{
-                            styleClass: 'col-md-3',
-                            widgets: [{
-                                type: 'drop-cv',
-                                config: config
-                            }]
-                        }, {
-                            styleClass: 'col-md-6',
-                            widgets: [{
-                                type: 'general-stats',
-                                config: config
-                            }, {
-                                type: 'job-post-form',
-                                config: config
-                            }]
-                        }, {
-                            styleClass: 'col-md-3',
-                            widgets: [{
-                                type: 'timeline',
-                                config: config
-                            }, {
-                                type: 'top-jobs',
-                                config: config
-                            }]
-                        }]
-                    }]
-                };
-            }
-            $scope.dashboard = {
-                model: model
-            };
-            $scope.$on('adfWidgetAdded', function(name, model, widget) {
-                console.log(name);
-            });
-            $scope.$on('adfDashboardChanged', function(event, name, model) {
-                localStorageService.set(name, model);
-            });
-        })
-        .controller('loginController', function($scope, authenticationService, $state) {
-            $scope.credentials = {};
-            $scope.login = function(form) {
-                if (form.$valid) {
-                    authenticationService
-                        .login($scope.credentials)
-                        .then(function(resp) {
-                            console.log(resp);
-                            $state.go('home');
-                        }, function(error) {
-                            console.log(error);
                         })
+                        .structure('4-8', {
+                            rows: [{
+                                columns: [{
+                                    styleClass: 'col-md-4',
+                                    widgets: []
+                                }, {
+                                    styleClass: 'col-md-8',
+                                    widgets: []
+                                }]
+                            }, {
+                                columns: [{
+                                    styleClass: 'col-md-4',
+                                    widgets: []
+                                }, {
+                                    styleClass: 'col-md-4',
+                                    widgets: []
+                                }, {
+                                    styleClass: 'col-md-4',
+                                    widgets: []
+                                }]
+                            }]
+                        });
+                $urlRouterProvider.otherwise('/');
+                $stateProvider
+                        .state('home', {
+                            url: '/',
+                            templateUrl: '/views/home.html',
+                            controller: 'dashboardController'
+                        })
+                        .state('login', {
+                            url: '/login',
+                            templateUrl: '/views/login.html',
+                            controller: 'loginController'
+                        });
+                authenticationInterceptorProvider.error(['$location', function ($location) {
+                    $location.path('/login');
+                }]);
+            })
+            .controller('dashboardController', function ($scope, localStorageService) {
+                var model = localStorageService.get('widgetSampleDashboard');
+                if (!model) {
+                    var config = {
+                        height: 225
+                    };
+                    model = {
+                        rows: [{
+                            columns: [{
+                                styleClass: 'col-md-8',
+                                widgets: [{
+                                    type: 'applicant-stats',
+                                    config: config
+                                }]
+                            }, {
+                                styleClass: 'col-md-4',
+                                widgets: [{
+                                    type: 'ads',
+                                    config: config
+                                }]
+                            }]
+                        }, {
+                            columns: [{
+                                styleClass: 'col-md-3',
+                                widgets: [{
+                                    type: 'drop-cv',
+                                    config: config
+                                }]
+                            }, {
+                                styleClass: 'col-md-6',
+                                widgets: [{
+                                    type: 'general-stats',
+                                    config: config
+                                }, {
+                                    type: 'job-post-form',
+                                    config: config
+                                }]
+                            }, {
+                                styleClass: 'col-md-3',
+                                widgets: [{
+                                    type: 'timeline',
+                                    config: config
+                                }, {
+                                    type: 'top-jobs',
+                                    config: config
+                                }]
+                            }]
+                        }]
+                    };
                 }
-            }
+                $scope.dashboard = {
+                    model: model
+                };
+                $scope.$on('adfWidgetAdded', function (name, model, widget) {
+                    console.log(name);
+                });
+                $scope.$on('adfDashboardChanged', function (event, name, model) {
+                    localStorageService.set(name, model);
+                });
+            })
+            .controller('loginController', function ($scope, authenticationService, $state) {
+                $scope.credentials = {};
+                $scope.login = function (form) {
+                    if (form.$valid) {
+                        authenticationService
+                                .login($scope.credentials)
+                                .then(function (resp) {
+                                    console.log(resp);
+                                    $state.go('home');
+                                }, function (error) {
+                                    console.log(error);
+                                })
+                    }
+                }
 
-        });
-    </script>
+            });
+</script>
 </body>
 
 </html>

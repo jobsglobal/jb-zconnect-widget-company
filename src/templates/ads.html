@@ -1,6 +1,6 @@
 <div style="height: {{ads.config.height}}px !important">
-    <uib-carousel active="active" interval="2" no-wrap="noWrapSlides">
-        <uib-slide ng-repeat="ad in ads.list">
+    <uib-carousel active="active" interval="2000">
+        <uib-slide ng-repeat="ad in ads.list" index="ad.id">
             <img ng-src="{{ad.image}}" style="margin:auto;">
             <div class="carousel-caption">
                 <h4 data-ng-bind="ad.title"></h4>
