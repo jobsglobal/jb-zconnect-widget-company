@@ -55,8 +55,11 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    border-bottom: 1px solid #ddd;
     padding: 3px;
+}
+
+.dashbord_top_jobs_ul-2 {
+    border-bottom: 1px solid #ddd;
 }
 
 .dashbord_top_jobs > li > ul > li {
@@ -70,14 +73,10 @@
     color: #555;
     float: left;
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0;
-    padding: 10px 0;
+    padding: 0 0 10px;
     width: 100%;
-}
-
-.dashbord_top_jobs_ul-1 {
-    background: #fff none repeat scroll 0 0;
 }
 
 .dashbord_top_jobs > li > ul > li p {
