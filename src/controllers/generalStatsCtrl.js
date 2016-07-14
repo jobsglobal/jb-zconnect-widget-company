@@ -2,9 +2,10 @@
 
 angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['companyService', 'config', 'jbWidget', 'ngZconnected', 'currentUser',
   function (companyService, config, jbWidget, ngZconnected, currentUser) {
-    var generalStats = this;
-    generalStats.config = config;
-    generalStats.options = {
+    var vm = this;
+    vm.currentUser = currentUser;
+    vm.config = config;
+    vm.options = {
       "chart": {
         "type": "lineChart",
         "height": config.height,
@@ -37,11 +38,11 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['co
 
       }
     };
-    generalStats.data = [];
-    companyService.job.getApplicantGeneralStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
+    vm.data = [];
+    companyService.job.getApplicantGeneralStats(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
       if (ngZconnected._DEBUG)
         console.log(resp);
-      generalStats.data.push({
+      vm.data.push({
         key: 'Applicants',
         values: resp.data
       });
@@ -49,10 +50,10 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['co
       if (ngZconnected._DEBUG)
         console.log(error);
     });
-    companyService.job.getJobGeneralStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
+    companyService.job.getJobGeneralStats(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
       if (ngZconnected._DEBUG)
         console.log(resp);
-      generalStats.data.push({
+      vm.data.push({
         key: 'Jobs',
         values: resp.data
       });

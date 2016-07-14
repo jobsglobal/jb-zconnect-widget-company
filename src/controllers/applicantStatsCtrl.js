@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['config', 'jobService', 'jbWidget', 'ngZconnected', 'currentUser', function (config, jobService, jbWidget, ngZconnected, currentUser) {
-  var applicantStats = this;
-  applicantStats.config = config;
-  applicantStats.options = {
+  var vm = this;
+  vm.config = config;
+  vm.options = {
     "chart": {
       "type": "lineChart",
       "height": config.height,
@@ -39,9 +39,10 @@ angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['
 
     }
   };
-  applicantStats.data = [];
-  jobService.applicants.getStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
-    applicantStats.data.push({
+  vm.data = [];
+  vm.currentUser = currentUser;
+  jobService.applicants.getStats(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
+    vm.data.push({
       key: 'Applicants',
       values: resp.data
     });

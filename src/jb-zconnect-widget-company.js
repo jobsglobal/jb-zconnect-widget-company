@@ -102,15 +102,10 @@ angular.module('jb-zconnect-widget-company', [
     }).provider('jbWidget', function() {
         var self = this;
         var apiRoot = '//jobsglobal.dev/api/v1';
-        var user = {};
         var company = {};
         var siteName = 'jobsglobal.dev';
         self.setSiteName = function(_siteName) {
             siteName = _siteName;
-            return self;
-        };
-        self.setUser = function(_user) {
-            user = _user;
             return self;
         };
         self.setCompany = function(_company) {
@@ -124,7 +119,6 @@ angular.module('jb-zconnect-widget-company', [
         self.$get = function() {
             return {
                 apiRoot: apiRoot,
-                user: user,
                 company: company,
                 siteName: siteName
             }
