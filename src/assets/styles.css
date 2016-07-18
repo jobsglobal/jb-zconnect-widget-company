@@ -88,6 +88,12 @@
     width: 100%;
 }
 
+ul.timeline {
+    float: left;
+    max-height: 400px;
+    overflow: auto;
+}
+
 
 /*.dashbord_top_jobs > li > ul.dashbord_top_jobs_ul-2:nth-child(even) {
     background: #F1F3F5;

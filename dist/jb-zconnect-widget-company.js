@@ -103,15 +103,10 @@ angular.module('jb-zconnect-widget-company', [
     }]).provider('jbWidget', function() {
         var self = this;
         var apiRoot = '//jobsglobal.dev/api/v1';
-        var user = {};
         var company = {};
         var siteName = 'jobsglobal.dev';
         self.setSiteName = function(_siteName) {
             siteName = _siteName;
-            return self;
-        };
-        self.setUser = function(_user) {
-            user = _user;
             return self;
         };
         self.setCompany = function(_company) {
@@ -125,7 +120,6 @@ angular.module('jb-zconnect-widget-company', [
         self.$get = function() {
             return {
                 apiRoot: apiRoot,
-                user: user,
                 company: company,
                 siteName: siteName
             }
@@ -161,35 +155,41 @@ angular.module('jb-zconnect-widget-company').controller('TopJobsCtrl', ['config'
 
 
 
-angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'companyService', 'jbWidget', 'ngZconnected', function (config, companyService, jbWidget, ngZconnected) {
-  var timeline = this;
-  timeline.config = config;
-  timeline.currentUser = jbWidget.user;
+angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', [
+  'config',
+  'companyService',
+  'jbWidget',
+  'ngZconnected',
+  'currentUser',
+  function (config, companyService, jbWidget, ngZconnected, currentUser) {
+    var vm = this;
+    vm.config = config;
+    vm.currentUser = currentUser;
 
-  timeline.animateElementIn = function ($el) {
-    $el.removeClass('hidden');
-    $el.addClass('animated fadeInUp'); // this example leverages animate.css classes
-  };
+    vm.animateElementIn = function ($el) {
+      $el.removeClass('hidden');
+      $el.addClass('animated fadeInUp'); // this example leverages animate.css classes
+    };
 
-  timeline.animateElementOut = function ($el) {
-    $el.addClass('hidden');
-    $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
-  };
-  companyService.company.getTimelineHtml(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
-    if (ngZconnected._DEBUG)
-      console.log(resp);
-    timeline.events = resp.data;
-  }, function (error) {
-    if (ngZconnected._DEBUG)
-      console.log(error);
-  })
-}]);
+    vm.animateElementOut = function ($el) {
+      $el.addClass('hidden');
+      $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
+    };
+    companyService.company.getTimelineHtml(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
+      if (ngZconnected._DEBUG)
+        console.log(resp);
+      vm.events = resp.data;
+    }, function (error) {
+      if (ngZconnected._DEBUG)
+        console.log(error);
+    })
+  }]);
 
 
 
 angular.module('jb-zconnect-widget-company')
-    .controller('JobPostCtrl', ['resourceService', 'userService', 'jobService', '$q', 'ngZconnected', 'jbWidget', 'companyService', 'employerService',
-      function JobPostCtrl(resourceService, userService, jobService, $q, ngZconnected, jbWidget, companyService, employerService) {
+    .controller('JobPostCtrl', ['resourceService', 'currentUser', 'jobService', '$q', 'ngZconnected', 'jbWidget', 'companyService', 'employerService',
+      function JobPostCtrl(resourceService, currentUser, jobService, $q, ngZconnected, jbWidget, companyService, employerService) {
         var vm = this;
         var defaultImage = "/components/com_media/img/job-default-img.png";
         vm.loader = true;
@@ -198,6 +198,7 @@ angular.module('jb-zconnect-widget-company')
         vm.companyId = jbWidget.company.id;
         vm.newJobs = [];
         vm.expYears = _.range(0, 51);
+        vm.currentUser = currentUser;
         vm.jobGroup = {
           start_date: new Date()
         };
@@ -209,12 +210,8 @@ angular.module('jb-zconnect-widget-company')
         vm.dateEndOptions = {
           maxDate: new Date(2020, 5, 22),
         };
-        $q.when(userService.getCurrentUser()).then(function (currentUser) {
-          if (ngZconnected._DEBUG)
-            console.log(currentUser);
-          vm.currentUser = currentUser;
-          return companyService.company.get(vm.currentUser.user_id, vm.companyId);
-        }).then(function (company) {
+        $q.when(companyService.company.get(vm.currentUser.user_id, vm.companyId))
+          .then(function (company) {
           if (ngZconnected._DEBUG)
             console.log(company);
           vm.company = company;
@@ -355,9 +352,10 @@ angular.module('jb-zconnect-widget-company')
 
 angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['companyService', 'config', 'jbWidget', 'ngZconnected', 'currentUser',
   function (companyService, config, jbWidget, ngZconnected, currentUser) {
-    var generalStats = this;
-    generalStats.config = config;
-    generalStats.options = {
+    var vm = this;
+    vm.currentUser = currentUser;
+    vm.config = config;
+    vm.options = {
       "chart": {
         "type": "lineChart",
         "height": config.height,
@@ -390,11 +388,11 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['co
 
       }
     };
-    generalStats.data = [];
-    companyService.job.getApplicantGeneralStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
+    vm.data = [];
+    companyService.job.getApplicantGeneralStats(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
       if (ngZconnected._DEBUG)
         console.log(resp);
-      generalStats.data.push({
+      vm.data.push({
         key: 'Applicants',
         values: resp.data
       });
@@ -402,10 +400,10 @@ angular.module('jb-zconnect-widget-company').controller('GeneralStatsCtrl', ['co
       if (ngZconnected._DEBUG)
         console.log(error);
     });
-    companyService.job.getJobGeneralStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
+    companyService.job.getJobGeneralStats(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
       if (ngZconnected._DEBUG)
         console.log(resp);
-      generalStats.data.push({
+      vm.data.push({
         key: 'Jobs',
         values: resp.data
       });
@@ -536,9 +534,9 @@ angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', [
 
 
 angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['config', 'jobService', 'jbWidget', 'ngZconnected', 'currentUser', function (config, jobService, jbWidget, ngZconnected, currentUser) {
-  var applicantStats = this;
-  applicantStats.config = config;
-  applicantStats.options = {
+  var vm = this;
+  vm.config = config;
+  vm.options = {
     "chart": {
       "type": "lineChart",
       "height": config.height,
@@ -574,9 +572,10 @@ angular.module('jb-zconnect-widget-company').controller('ApplicantStatsCtrl', ['
 
     }
   };
-  applicantStats.data = [];
-  jobService.applicants.getStats(currentUser.user_id, jbWidget.company.id).then(function (resp) {
-    applicantStats.data.push({
+  vm.data = [];
+  vm.currentUser = currentUser;
+  jobService.applicants.getStats(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
+    vm.data.push({
       key: 'Applicants',
       values: resp.data
     });
