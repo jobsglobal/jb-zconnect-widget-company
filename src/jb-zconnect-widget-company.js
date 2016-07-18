@@ -79,7 +79,6 @@ angular.module('jb-zconnect-widget-company', [
         templateUrl: widgetTemplatesPath + 'timeline.html',
         controller: 'TimelineCtrl',
         controllerAs: 'timeline',
-        styleClass: 'timeline-container',
         config: angular.extend(widgetConfig, {})
       }))
       .widget('job-post-form', angular.extend(widget, {
