@@ -107,9 +107,9 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'notifications',
                 styleClass: 'notifications',
                 config: angular.extend(widgetConfig, {})
-
             }));
-    }).provider('jbWidget', function() {
+    })
+    .provider('jbWidget', function() {
         var self = this;
         var apiRoot = '//jobsglobal.dev/api/v1';
         var company = {};

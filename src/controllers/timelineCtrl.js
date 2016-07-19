@@ -12,12 +12,12 @@ angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', [
     vm.currentUser = currentUser;
 
     vm.animateElementIn = function ($el) {
-      $el.removeClass('hidden');
+      $el.removeClass('timeline-hidden');
       $el.addClass('animated fadeInUp'); // this example leverages animate.css classes
     };
 
     vm.animateElementOut = function ($el) {
-      $el.addClass('hidden');
+      $el.addClass('timeline-hidden');
       $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
     };
     companyService.company.getTimelineHtml(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {

@@ -1,10 +1,10 @@
-<div style="height: {{timeline.config.height}}px !important">
+<div class="timeline-container" style="max-height: {{timeline.config.height}}px !important;">
     <timeline>
         <timeline-event ng-repeat="event in timeline.events">
-            <timeline-badge class="actor-avatar">
+            <timeline-badge class="actor-avatar timeline-hidden" when-visible="timeline.animateElementIn" when-not-visible="timeline.animateElementOut" bind-scroll-to=".timeline-container">
                 <img class="img-responsive" data-ng-src="{{event.actor.avatar}}" alt="{{event.actor.first_name}}">
             </timeline-badge>
-            <timeline-panel class="{{event.badgeClass}}">
+            <timeline-panel class="{{event.badgeClass}} timline-hidden" when-visible="timeline.animateElementIn" when-not-visible="timeline.animateElementOut" bind-scroll-to=".timeline-container">
                 <timeline-heading data-ng-switch data-on="event.app">
                     <span class="pull-right" am-time-ago="event.created | amUtc"></span>
                     <span class="title-header"
