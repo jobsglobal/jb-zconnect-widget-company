@@ -95,10 +95,49 @@ ul.timeline {
 }
 
 
-/*.dashbord_top_jobs > li > ul.dashbord_top_jobs_ul-2:nth-child(even) {
-    background: #F1F3F5;
+/* for notification starts here */
+
+.notification_ul {
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 430px;
 }
 
-.dashbord_top_jobs > li > ul.dashbord_top_jobs_ul-2:nth-child(odd) {
-    background: #fff;
-}*/
+.notification_ul li {
+    border-bottom: 1px solid #f0f0f0;
+    float: left;
+    list-style-type: none;
+    padding: 3px;
+    width: 100%;
+}
+
+.notification_ul li img {
+    float: left;
+    width: 100%;
+}
+
+.notification_ul li p {
+    color: #555;
+    float: left;
+    font-size: 14px;
+    margin: 0 0 0 7px;
+    width: 100%;
+}
+
+.notification_ul li p span.name {}
+
+.notification_ul li p span.action {}
+
+.notification_ul li p span.object {}
+
+.notification_ul li h6 {
+    color: #777;
+    float: left;
+    font-size: 12px;
+    margin: 0 0 0 7px;
+    width: 100%;
+}
+
+
+/* for notification ends here */

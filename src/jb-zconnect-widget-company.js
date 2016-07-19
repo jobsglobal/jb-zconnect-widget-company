@@ -98,6 +98,16 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'applicantStats',
                 styleClass: 'applicant-stats',
                 config: angular.extend(widgetConfig, {})
+            }))
+            .widget('notifications', angular.extend(widget, {
+                title: 'Notifications',
+                description: 'Widget that shows notifications of the company.',
+                templateUrl: widgetTemplatesPath + 'notifications.html',
+                controller: 'NotificationsCtrl',
+                controllerAs: 'notifications',
+                styleClass: 'notifications',
+                config: angular.extend(widgetConfig, {})
+
             }));
     }).provider('jbWidget', function() {
         var self = this;
