@@ -149,5 +149,22 @@
     width: 100%;
 }
 
+.c_all_cpanel {
+    float: right;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    color: #555;
+}
+
+.c_all_cpanel i {
+    float: left;
+    ;
+    font-size: 14px;
+    color: #555;
+    margin-right: 3px;
+}
+
 
 /* for notification ends here */
