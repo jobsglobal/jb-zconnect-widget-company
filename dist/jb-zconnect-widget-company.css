@@ -150,12 +150,14 @@
 }
 
 .c_all_cpanel {
-    float: right;
     background: none;
-    padding: 0;
-    margin: 0;
-    font-size: 13px;
     color: #555;
+    float: right;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: 14px;
 }
 
 .c_all_cpanel i {
@@ -168,3 +170,29 @@
 
 
 /* for notification ends here */
+
+
+/* recent followers starts here */
+
+.recent_followers_ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.recent_followers_ul li {
+    display: inline-block;
+    list-style-type: none;
+    margin: 3px;
+    width: 17%;
+}
+
+.recent_followers_ul li img {
+    float: left;
+    width: 100%;
+    border-radius: 2px;
+}
+
+
+/* recent followers ends here */

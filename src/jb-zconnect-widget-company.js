@@ -116,6 +116,24 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'notifications',
                 styleClass: 'notifications',
                 config: angular.extend(widgetConfig, {})
+            }))
+            .widget('followers', angular.extend(widget, {
+                title: 'Recent Followers',
+                description: 'Widget that shows followers of the company.',
+                templateUrl: widgetTemplatesPath + 'followers.html',
+                controller: 'FollowersCtrl',
+                controllerAs: 'followers',
+                styleClass: 'followers',
+                config: angular.extend(widgetConfig, {})
+            }))
+            .widget('status', angular.extend(widget, {
+                title: 'Status',
+                description: 'Widget that shows status of the company.',
+                templateUrl: widgetTemplatesPath + 'status.html',
+                controller: 'StatusCtrl',
+                controllerAs: 'status',
+                styleClass: 'status',
+                config: angular.extend(widgetConfig, {})
             }));
     })
     .provider('jbWidget', function() {

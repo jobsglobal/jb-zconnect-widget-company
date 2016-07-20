@@ -108,11 +108,20 @@
                 model = {
                     rows: [{
                         columns: [{
-                            styleClass: 'col-md-12',
+                            styleClass: 'col-md-4',
                             widgets: [{
                                 type: 'notifications',
                                 config: config
-                            }]
+                            }, {
+                                type: 'followers',
+                                config: config
+                            }, {
+                                type: 'messages',
+                                config: config
+                            }, {
+                                type: 'status',
+                                config: config
+                            }, ]
                         }, {
                             styleClass: 'col-md-4',
                             widgets: []
