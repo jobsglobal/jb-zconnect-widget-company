@@ -102,8 +102,12 @@
     border-bottom: 1px solid #f0f0f0;
     float: left;
     list-style-type: none;
-    padding: 3px;
+    padding: 8px 3px;
     width: 100%;
+}
+
+.notification_ul > li:last-child {
+    border: none;
 }
 
 .notification_ul li img {
@@ -117,19 +121,31 @@
     font-size: 14px;
     margin: 0 0 0 7px;
     width: 100%;
+    line-height: 14px;
 }
 
-.notification_ul li p span.name {}
+.notification_ul li p span.name {
+    color: #555;
+    font-family: open_sanssemibold;
+    font-size: 13px;
+}
 
-.notification_ul li p span.action {}
+.notification_ul li p span.action {
+    color: #777;
+    font-size: 13px;
+    padding: 0 5px;
+}
 
-.notification_ul li p span.object {}
+.notification_ul li p span.object {
+    font-size: 13px;
+}
 
 .notification_ul li h6 {
-    color: #777;
+    color: #477494;
     float: left;
     font-size: 12px;
-    margin: 0 0 0 7px;
+    line-height: 12px;
+    margin: 4px 0 0 7px;
     width: 100%;
 }
 
