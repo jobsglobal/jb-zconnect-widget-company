@@ -56,8 +56,8 @@ gulp.task('sample', ['templates'], function() {
         .pipe($.inject(files))
         .pipe(gulp.dest('.tmp/dist'));
     gulp.src('sample/views/*.html')
-      .pipe(gulp.dest('.tmp/dist/views'))
-      .pipe(connect.reload());
+        .pipe(gulp.dest('.tmp/dist/views'))
+        .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
@@ -79,9 +79,11 @@ gulp.task('css', function() {
         .pipe($.if('*.less', $.less()))
         .pipe($.concat(pkg.name + '.css'))
         .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'))
         .pipe($.rename(pkg.name + '.min.css'))
         .pipe($.minifyCss())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'));
 });
 
 gulp.task('js', function() {
@@ -94,9 +96,11 @@ gulp.task('js', function() {
         .pipe($.headerfooter('(function(window, undefined) {\'use strict\';\n', '})(window);'))
         .pipe($.ngAnnotate(annotateOptions))
         .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'))
         .pipe($.rename(pkg.name + '.min.js'))
         .pipe($.uglify())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'));
 });
 
 /** clean **/
