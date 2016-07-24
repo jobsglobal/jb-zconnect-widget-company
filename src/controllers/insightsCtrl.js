@@ -6,7 +6,6 @@ angular
         vm.options = {
             "chart": {
                 "type": "multiBarHorizontalChart",
-                "height": vm.config.height,
                 "showControls": false,
                 "showValues": true,
                 "duration": 500,

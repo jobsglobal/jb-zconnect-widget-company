@@ -143,8 +143,8 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'insights',
                 styleClass: 'insights',
                 config: angular.extend(widgetConfig, {
-                    color: '#ffffff',
-
+                    linkSref: "",
+                    linkText: "See all insights"
                 })
             }))
             .widget('link', angular.extend(widget, {
