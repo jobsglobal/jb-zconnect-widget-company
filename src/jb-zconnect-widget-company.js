@@ -135,6 +135,18 @@ angular.module('jb-zconnect-widget-company', [
                 styleClass: 'status',
                 config: angular.extend(widgetConfig, {})
             }))
+            .widget('insights', angular.extend(widget, {
+                title: 'Insights',
+                description: 'Widget that shows insights of the company.',
+                templateUrl: widgetTemplatesPath + 'insights.html',
+                controller: 'InsightsCtrl',
+                controllerAs: 'insights',
+                styleClass: 'insights',
+                config: angular.extend(widgetConfig, {
+                    color: '#ffffff',
+
+                })
+            }))
             .widget('link', angular.extend(widget, {
                 title: 'Link',
                 description: 'Widget that shows link of the company.',
