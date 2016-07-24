@@ -6,7 +6,7 @@ var del = require('del');
 var jsReporter = require('jshint-stylish');
 var annotateAdfPlugin = require('ng-annotate-adf-plugin');
 var pkg = require('./bower.json');
-
+var externalProjectDir = '/home/josh/Development/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist';
 var annotateOptions = {
     plugin: [
         annotateAdfPlugin
@@ -79,11 +79,11 @@ gulp.task('css', function() {
         .pipe($.if('*.less', $.less()))
         .pipe($.concat(pkg.name + '.css'))
         .pipe(gulp.dest('dist'))
-        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'))
+        .pipe(gulp.dest(externalProjectDir))
         .pipe($.rename(pkg.name + '.min.css'))
         .pipe($.minifyCss())
         .pipe(gulp.dest('dist'))
-        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'));
+        .pipe(gulp.dest(externalProjectDir));
 });
 
 gulp.task('js', function() {
@@ -96,11 +96,11 @@ gulp.task('js', function() {
         .pipe($.headerfooter('(function(window, undefined) {\'use strict\';\n', '})(window);'))
         .pipe($.ngAnnotate(annotateOptions))
         .pipe(gulp.dest('dist'))
-        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'))
+        .pipe(gulp.dest(externalProjectDir))
         .pipe($.rename(pkg.name + '.min.js'))
         .pipe($.uglify())
         .pipe(gulp.dest('dist'))
-        .pipe(gulp.dest('c:/xampp/htdocs/zconnected/media/com_zconjobs/js/bower_components/jb-zconnect-widget-company/dist'));
+        .pipe(gulp.dest(externalProjectDir));
 });
 
 /** clean **/

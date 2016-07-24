@@ -13,6 +13,7 @@
     <!-- endinject -->
     <!-- inlince css -->
     <link rel="stylesheet" href="../components/angular-timeline/dist/angular-timeline-animations.css">
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.min.css">
     <style type="text/css">
     body {
         padding-top: 60px;
@@ -110,18 +111,14 @@
                         columns: [{
                             styleClass: 'col-md-4',
                             widgets: [{
-                                type: 'notifications',
-                                config: config
-                            }, {
-                                type: 'followers',
-                                config: config
-                            }, {
-                                type: 'messages',
-                                config: config
-                            }, {
-                                type: 'status',
-                                config: config
-                            }, ]
+                                type: 'link',
+                                config: angular.extend(config, {
+                                    imageType: "icon",
+                                    imageSource: "fa fa-times",
+                                    text: "sample",
+                                    sref: "Home"
+                                })
+                            }]
                         }, {
                             styleClass: 'col-md-4',
                             widgets: []

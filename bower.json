@@ -37,7 +37,8 @@
   },
   "devDependencies": {
     "angular-local-storage": ">=0.2",
-    "angular-ui-router": "^0.3.1"
+    "angular-ui-router": "^0.3.1",
+    "font-awesome": "fontawesome#^4.6.3"
   },
   "overrides": {
     "bootstrap": {

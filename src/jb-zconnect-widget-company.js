@@ -134,6 +134,23 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'status',
                 styleClass: 'status',
                 config: angular.extend(widgetConfig, {})
+            }))
+            .widget('link', angular.extend(widget, {
+                title: 'Link',
+                description: 'Widget that shows link of the company.',
+                templateUrl: widgetTemplatesPath + 'link.html',
+                controller: 'LinkCtrl',
+                controllerAs: 'link',
+                styleClass: 'link',
+                frameless: true,
+                config: angular.extend(widgetConfig, {
+                    imageType: "image", //or icon
+                    sref: "/",
+                    imageSource: "", //for icon use glyph or fa classess
+                    text: "Home",
+
+
+                })
             }));
     })
     .provider('jbWidget', function() {
