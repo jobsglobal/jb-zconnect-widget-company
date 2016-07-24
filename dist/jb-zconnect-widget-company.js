@@ -483,7 +483,6 @@ angular
                     "axisLabel": null,
                     "height": 60,
                     "ticks": null,
-                    "width": 75,
                     "margin": {
                         "top": 0,
                         "right": 0,
@@ -505,27 +504,6 @@ angular
                         1
                     ]
                 },
-                "multibar": {
-                    "dispatch": {},
-                    "width": 960,
-                    "height": 500,
-                    "forceY": [
-                        0
-                    ],
-                    "stacked": false,
-                    "showValues": false,
-                    "id": 2732,
-                    "valuePadding": 60,
-                    "groupSpacing": 0.1,
-                    "margin": {
-                        "top": 0,
-                        "right": 0,
-                        "bottom": 0,
-                        "left": 0
-                    },
-                    "duration": 250,
-                    "barColor": null
-                },
                 "tooltip": {
                     "duration": 0,
                     "gravity": "w",
@@ -545,7 +523,6 @@ angular
                     "data": null,
                     "id": "nvtooltip-68611"
                 },
-                "width": null,
                 "forceY": [
                     0
                 ],
