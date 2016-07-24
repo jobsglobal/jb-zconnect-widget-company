@@ -113,6 +113,7 @@
 .notification_ul li img {
     float: left;
     width: 100%;
+    border-radius: 3px;
 }
 
 .notification_ul li p {
@@ -196,3 +197,24 @@
 
 
 /* recent followers ends here */
+
+
+/* messages widget starts here */
+
+.message_date {
+    color: #888;
+    float: right;
+    font-size: 12px;
+}
+
+.message_h5 {
+    float: left;
+    margin: 2px 7px;
+    padding: 0;
+    width: 100%;
+    font-size: 13px;
+    color: #888;
+}
+
+
+/* messages widget ends here */
