@@ -97,7 +97,7 @@ angular
                 "groupSpacing": 0.1,
                 "margin": {
                     "top": 0,
-                    "right": 0,
+                    "right": 30,
                     "bottom": 0,
                     "left": 60
                 },
