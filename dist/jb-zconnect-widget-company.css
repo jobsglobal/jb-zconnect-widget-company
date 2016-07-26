@@ -99,6 +99,13 @@
     padding: 0;
 }
 
+.view_all_button i {
+    float: left;
+    font-size: 14px;
+    color: #555;
+    margin-right: 3px;
+}
+
 .top_jobs_dashboard_mrgn {
     margin-top: 15px;
 }
