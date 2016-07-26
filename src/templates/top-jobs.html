@@ -1,34 +1,32 @@
-<div>
-    <ol class="dashbord_top_jobs">
-        <li>
-            <ul class="dashbord_top_jobs_ul-1">
-                <li class="col-lg-8 col-sm-8 col-xs-8">
-                    <h4>Position</h4>
-                </li>
-                <li class="col-lg-4 col-sm-4 col-xs-4">
-                    <h4>Applicants</h4>
-                </li>
-            </ul>
-        </li>
-        <li style="height: {{topJobs.config.height}}px !important;overflow: auto">
-            <ul class="dashbord_top_jobs_ul-2" data-ng-repeat="job in topJobs.data">
-                <li class="col-lg-8 col-sm-8 col-xs-8">
-                    <p data-ng-bind="job.job_title"></p>
-                </li>
-                <li class="col-lg-4 col-sm-4 col-xs-4">
-                    <p class="text-center" data-ng-bind="job.total"></p>
-                </li>
-            </ul>
-        </li>
-        <div class="col-lg-12 col-sm-12 col-xs-12 top_jobs_dashboard_mrgn">
-            <div class="row">
-                <button class="c_all_cpanel" type="button">
-                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> See all Notifications
-                </button>
-                <button class="view_all_button">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>View all
-                </button>
-            </div>
+<ol class="dashbord_top_jobs">
+    <li>
+        <ul class="dashbord_top_jobs_ul-1">
+            <li class="col-lg-8 col-sm-8 col-xs-8">
+                <h4>Position</h4>
+            </li>
+            <li class="col-lg-4 col-sm-4 col-xs-4">
+                <h4>Applicants</h4>
+            </li>
+        </ul>
+    </li>
+    <li style="height: {{topJobs.config.height}}px !important;overflow: auto">
+        <ul class="dashbord_top_jobs_ul-2" data-ng-repeat="job in topJobs.data">
+            <li class="col-lg-8 col-sm-8 col-xs-8">
+                <p data-ng-bind="job.job_title"></p>
+            </li>
+            <li class="col-lg-4 col-sm-4 col-xs-4">
+                <p class="text-center" data-ng-bind="job.total"></p>
+            </li>
+        </ul>
+    </li>
+    <div class="col-lg-12 col-sm-12 col-xs-12 top_jobs_dashboard_mrgn">
+        <div class="row">
+            <button class="c_all_cpanel" type="button">
+                <i class="fa fa-suitcase" aria-hidden="true"></i>Post new job
+            </button>
+            <button class="view_all_button">
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>View all
+            </button>
         </div>
-    </ol>
-</div>
+    </div>
+</ol>
