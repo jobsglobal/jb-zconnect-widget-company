@@ -262,14 +262,18 @@
 /* cv saerch link starts here */
 
 .dashboard_cv_search_link {
+    background: #eb4960;
+    border-radius: 5px;
     float: left;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     width: 100%;
 }
 
 .dashboard_cv_search_link i {
     float: left;
+    font-size: 28px;
+    padding: 10px;
 }
 
 .dashboard_cv_search_link span {
