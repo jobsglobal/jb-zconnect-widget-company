@@ -273,18 +273,18 @@
 .dashboard_cv_search_link i {
     float: left;
     font-size: 60px;
-    padding: 10px;
+    padding: 20px 0;
     text-align: center;
     width: 100%;
     color: #fff;
 }
 
 .dashboard_cv_search_link span {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
     color: #fff;
     float: left;
-    font-size: 18px;
-    padding: 5px 0;
+    font-size: 16px;
+    padding: 8px 0;
     text-align: center;
     width: 100%;
     border-radius: 0 0px 5px 5px;
