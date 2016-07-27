@@ -292,3 +292,42 @@
 
 
 /* cv search link ends here */
+
+
+/* company profile page starts here */
+
+.company_details_dashboard {
+    float: left;
+    padding: 0;
+    width: 100%;
+}
+
+.company_details_dashboard > li {
+    float: left;
+    width: 100%;
+    list-style-type: none;
+}
+
+.company_details_dashboard > li h6 {
+    float: left;
+    width: 100%;
+    margin: 0;
+    font-size: 18px;
+    color: #555;
+}
+
+.company_details_dashboard > li p {
+    float: left;
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.company_details_dashboard > li p span {
+    font-family: opensanssemibold;
+    margin-right: 3px;
+}
+
+
+/* company profile page ends here */
