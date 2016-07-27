@@ -308,7 +308,7 @@
     list-style-type: none;
 }
 
-.company_details_dashboard > li h6 {
+.company_details_dashboard > li h1 {
     float: left;
     width: 100%;
     margin: 0;
