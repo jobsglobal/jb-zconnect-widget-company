@@ -50,7 +50,8 @@
         .module('adfWidgetSample', ['adf', 'jb-zconnect-widget-company', 'LocalStorageModule', 'ngZconnected', 'ui.router'])
         .config(function(dashboardProvider, localStorageServiceProvider, ngZconnectedProvider, $stateProvider, $urlRouterProvider, authenticationInterceptorProvider, jbWidgetProvider) {
             jbWidgetProvider.setCompany({
-                id: 182
+                id: 182,
+                name: 'Jobsglobal'
             });
             localStorageServiceProvider.setPrefix('adf.jb-zconnect-widget-company');
             ngZconnectedProvider.setApiUrl('//jobsglobal.dev/api/v1');
@@ -111,8 +112,14 @@
                         columns: [{
                             styleClass: 'col-md-4',
                             widgets: [{
-                                type: 'insights',
-                                config: angular.extend(config, {})
+                                type: 'company-map',
+                                config: angular.extend(config, {
+                                    apiKey: 'AIzaSyCYyzyflp26xZ-s5_6A83E_PAGH6d-i2Mk',
+                                    longhitude: 25.2434247,
+                                    latitude: 55.3403342,
+                                    zoom: 15
+
+                                })
                             }]
                         }, {
                             styleClass: 'col-md-4',

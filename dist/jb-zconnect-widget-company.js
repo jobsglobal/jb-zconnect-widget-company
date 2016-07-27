@@ -13,7 +13,8 @@ angular.module('jb-zconnect-widget-company', [
         'ngResource',
         'angular-underscore',
         'ngZconnected',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngMap'
     ])
     .config(["dashboardProvider", function(dashboardProvider) {
         Dropzone.autoDiscover = false;
@@ -41,7 +42,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'GeneralStatsCtrl',
                 controllerAs: 'generalStats',
                 styleClass: 'general-stats',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('top-jobs', angular.extend(widget, {
                 title: 'Company Top Jobs',
@@ -50,7 +51,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'TopJobsCtrl',
                 controllerAs: 'topJobs',
                 styleClass: 'top-jobs',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('drop-cv', angular.extend(widget, {
                 title: 'Company CV Dropzone',
@@ -60,7 +61,7 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'dropCv',
                 styleClass: 'drop-cv',
                 reload: false,
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
 
             }))
             .widget('ads', angular.extend(widget, {
@@ -70,7 +71,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'AdsCtrl',
                 controllerAs: 'ads',
                 styleClass: 'ads',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
 
             }))
             .widget('timeline', angular.extend(widget, {
@@ -80,7 +81,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'TimelineCtrl',
                 controllerAs: 'timeline',
                 styleClass: 'timeline',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('job-post-form', angular.extend(widget, {
                 title: 'Job Post',
@@ -89,7 +90,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'JobPostCtrl',
                 controllerAs: 'jobPost',
                 styleClass: 'job-post-form',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('applicant-stats', angular.extend(widget, {
                 title: 'Applicant Stats',
@@ -98,7 +99,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'ApplicantStatsCtrl',
                 controllerAs: 'applicantStats',
                 styleClass: 'applicant-stats',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('notifications', angular.extend(widget, {
                 title: 'Notifications',
@@ -107,7 +108,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'NotificationsCtrl',
                 controllerAs: 'notifications',
                 styleClass: 'notifications',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('messages', angular.extend(widget, {
                 title: 'Messages',
@@ -116,7 +117,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'NotificationsCtrl',
                 controllerAs: 'notifications',
                 styleClass: 'notifications',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('followers', angular.extend(widget, {
                 title: 'Recent Followers',
@@ -125,7 +126,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'FollowersCtrl',
                 controllerAs: 'followers',
                 styleClass: 'followers',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('status', angular.extend(widget, {
                 title: 'Status',
@@ -134,7 +135,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'StatusCtrl',
                 controllerAs: 'status',
                 styleClass: 'status',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('insights', angular.extend(widget, {
                 title: 'Insights',
@@ -143,7 +144,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'InsightsCtrl',
                 controllerAs: 'insights',
                 styleClass: 'insights',
-                config: angular.extend(widgetConfig, {
+                config: angular.extend(angular.copy(widgetConfig), {
                     linkSref: "",
                     linkText: "See all insights"
                 })
@@ -156,7 +157,7 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'link',
                 styleClass: 'link',
                 frameless: true,
-                config: angular.extend(widgetConfig, {
+                config: angular.extend(angular.copy(widgetConfig), {
                     imageType: "image", //or icon
                     sref: "/",
                     imageSource: "", //for icon use glyph or fa classess
@@ -164,6 +165,31 @@ angular.module('jb-zconnect-widget-company', [
 
 
                 })
+            }))
+            .widget('company-map', angular.extend(widget, {
+                title: 'Company Map',
+                description: 'Widget that shows a location of the company in a map.',
+                templateUrl: widgetTemplatesPath + 'company-map.html',
+                controller: 'CompanyMapCtrl',
+                controllerAs: 'map',
+                styleClass: 'company-map',
+                frameless: true,
+                config: angular.extend(angular.copy(widgetConfig), {
+                    apiKey: '',
+                    longhitude: '',
+                    latitude: '',
+                    zoom: ''
+                })
+            }))
+            .widget('company-details', angular.extend(widget, {
+                title: 'Company Details',
+                description: 'Widget that shows a location of the company in a details.',
+                templateUrl: widgetTemplatesPath + 'company-details.html',
+                controller: 'CompanyDetailsCtrl',
+                controllerAs: 'details',
+                styleClass: 'company-details',
+                frameless: true,
+                config: angular.extend(angular.copy(widgetConfig), {})
             }));
     }])
     .provider('jbWidget', function() {
@@ -197,6 +223,8 @@ angular.module("jb-zconnect-widget-company").run(["$templateCache", function($te
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/view.html","<div><h1>Widget view</h1><p>Content of {{config.sample}}</p></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/ads.html","<div style=\"height: {{ads.config.height}}px !important\"><uib-carousel active=active interval=2000><uib-slide ng-repeat=\"ad in ads.list\" index=ad.id><img ng-src={{ad.image}} style=margin:auto;><div class=carousel-caption><h4 data-ng-bind=ad.title></h4><p data-ng-bind=ad.message></p></div></uib-slide></uib-carousel></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/applicant-stats.html","<div style=\"height: {{applicantStats.config.height}}px !important;overflow: auto\"><nvd3 options=applicantStats.options data=applicantStats.data></nvd3></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/company-details.html","<div style=\"height: {{details.config.height}}px !important;\"></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/company-map.html","<div style=\"height: {{map.config.height}}px !important;\"><div map-lazy-load=https://maps.google.com/maps/api/js map-lazy-load-params=\"https://maps.googleapis.com/maps/api/js?key={{map.config.apiKey}}\"><ng-map center={{map.config.longhitude}},{{map.config.latitude}} zoom={{map.config.zoom}}><marker label={{map.company.name}} place={{map.company.name}} centered=true position=\"{{map.config.longhitude}}, {{map.config.latitude}}\"></marker></ng-map></div></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html","<div><form class=dropzone method=post enctype=multipart/form-data ng-dropzone dropzone=dropCv.dropzone data-dropzone-config=dropCv.dropzoneConfig data-event-handlers=\"{ \'addedfile\': dropCv.dzAddedFile, \'error\': dropCv.dzError, success: dropCv.dzSuccess }\" style=\"min-height: {{dropCv.config.height}}px\"><div class=dz-message>Drop CV here or click to upload</div></form></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/followers.html","<div style=\"height: {{followers.config.height}}px !important; text-align:center\"><ul class=recent_followers_ul><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li></ul><div class=\"col-lg-12 col-sm-12 col-xs-12\"><div class=row><button type=button class=c_all_cpanel><i class=\"fa fa-chevron-circle-right\" aria-hidden=true></i>See all Notifications</button></div></div></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<div style=\"height: {{generalStats.config.height}}px !important;overflow: auto\"><nvd3 options=generalStats.options data=generalStats.data></nvd3></div>");
@@ -752,6 +780,23 @@ angular.module('jb-zconnect-widget-company').controller('DropCvCtrl', [
 
 
   }]);
+
+angular
+    .module('jb-zconnect-widget-company')
+    .controller('CompanyMapCtrl', ['config', 'jbWidget', function(config, jbWidget) {
+        var vm = this;
+        vm.test = 'Rafeeq';
+        vm.config = config;
+        vm.company = jbWidget.company;
+    }])
+
+angular
+    .module('jb-zconnect-widget-company')
+    .controller('CompanyDetailsCtrl', ['config', function(config) {
+        var vm = this;
+        vm.test = 'Rafeeq';
+        vm.config = config;
+    }])
 
 
 

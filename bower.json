@@ -33,7 +33,8 @@
     "angular-underscore": "^0.5.0",
     "ng-zconnected": "dev",
     "angular-bootstrap": "^1.3.3",
-    "angular-scroll-animate": "^0.9.9"
+    "angular-scroll-animate": "^0.9.9",
+    "ngmap": "^1.17.3"
   },
   "devDependencies": {
     "angular-local-storage": ">=0.2",

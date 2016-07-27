@@ -1,0 +1,7 @@
+<div style="height: {{map.config.height}}px !important;">
+    <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="https://maps.googleapis.com/maps/api/js?key={{map.config.apiKey}}">
+        <ng-map center="{{map.config.longhitude}},{{map.config.latitude}}" zoom="{{map.config.zoom}}">
+            <marker label="{{map.company.name}}" place="{{map.company.name}}" centered="true" position="{{map.config.longhitude}}, {{map.config.latitude}}"></marker>
+        </ng-map>
+    </div>
+</div>

@@ -12,7 +12,8 @@ angular.module('jb-zconnect-widget-company', [
         'ngResource',
         'angular-underscore',
         'ngZconnected',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'ngMap'
     ])
     .config(function(dashboardProvider) {
         Dropzone.autoDiscover = false;
@@ -40,7 +41,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'GeneralStatsCtrl',
                 controllerAs: 'generalStats',
                 styleClass: 'general-stats',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('top-jobs', angular.extend(widget, {
                 title: 'Company Top Jobs',
@@ -49,7 +50,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'TopJobsCtrl',
                 controllerAs: 'topJobs',
                 styleClass: 'top-jobs',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('drop-cv', angular.extend(widget, {
                 title: 'Company CV Dropzone',
@@ -59,7 +60,7 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'dropCv',
                 styleClass: 'drop-cv',
                 reload: false,
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
 
             }))
             .widget('ads', angular.extend(widget, {
@@ -69,7 +70,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'AdsCtrl',
                 controllerAs: 'ads',
                 styleClass: 'ads',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
 
             }))
             .widget('timeline', angular.extend(widget, {
@@ -79,7 +80,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'TimelineCtrl',
                 controllerAs: 'timeline',
                 styleClass: 'timeline',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('job-post-form', angular.extend(widget, {
                 title: 'Job Post',
@@ -88,7 +89,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'JobPostCtrl',
                 controllerAs: 'jobPost',
                 styleClass: 'job-post-form',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('applicant-stats', angular.extend(widget, {
                 title: 'Applicant Stats',
@@ -97,7 +98,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'ApplicantStatsCtrl',
                 controllerAs: 'applicantStats',
                 styleClass: 'applicant-stats',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('notifications', angular.extend(widget, {
                 title: 'Notifications',
@@ -106,7 +107,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'NotificationsCtrl',
                 controllerAs: 'notifications',
                 styleClass: 'notifications',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('messages', angular.extend(widget, {
                 title: 'Messages',
@@ -115,7 +116,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'NotificationsCtrl',
                 controllerAs: 'notifications',
                 styleClass: 'notifications',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('followers', angular.extend(widget, {
                 title: 'Recent Followers',
@@ -124,7 +125,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'FollowersCtrl',
                 controllerAs: 'followers',
                 styleClass: 'followers',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('status', angular.extend(widget, {
                 title: 'Status',
@@ -133,7 +134,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'StatusCtrl',
                 controllerAs: 'status',
                 styleClass: 'status',
-                config: angular.extend(widgetConfig, {})
+                config: angular.extend(angular.copy(widgetConfig), {})
             }))
             .widget('insights', angular.extend(widget, {
                 title: 'Insights',
@@ -142,7 +143,7 @@ angular.module('jb-zconnect-widget-company', [
                 controller: 'InsightsCtrl',
                 controllerAs: 'insights',
                 styleClass: 'insights',
-                config: angular.extend(widgetConfig, {
+                config: angular.extend(angular.copy(widgetConfig), {
                     linkSref: "",
                     linkText: "See all insights"
                 })
@@ -155,7 +156,7 @@ angular.module('jb-zconnect-widget-company', [
                 controllerAs: 'link',
                 styleClass: 'link',
                 frameless: true,
-                config: angular.extend(widgetConfig, {
+                config: angular.extend(angular.copy(widgetConfig), {
                     imageType: "image", //or icon
                     sref: "/",
                     imageSource: "", //for icon use glyph or fa classess
@@ -163,6 +164,31 @@ angular.module('jb-zconnect-widget-company', [
 
 
                 })
+            }))
+            .widget('company-map', angular.extend(widget, {
+                title: 'Company Map',
+                description: 'Widget that shows a location of the company in a map.',
+                templateUrl: widgetTemplatesPath + 'company-map.html',
+                controller: 'CompanyMapCtrl',
+                controllerAs: 'map',
+                styleClass: 'company-map',
+                frameless: true,
+                config: angular.extend(angular.copy(widgetConfig), {
+                    apiKey: '',
+                    longhitude: '',
+                    latitude: '',
+                    zoom: ''
+                })
+            }))
+            .widget('company-details', angular.extend(widget, {
+                title: 'Company Details',
+                description: 'Widget that shows a location of the company in a details.',
+                templateUrl: widgetTemplatesPath + 'company-details.html',
+                controller: 'CompanyDetailsCtrl',
+                controllerAs: 'details',
+                styleClass: 'company-details',
+                frameless: true,
+                config: angular.extend(angular.copy(widgetConfig), {})
             }));
     })
     .provider('jbWidget', function() {
