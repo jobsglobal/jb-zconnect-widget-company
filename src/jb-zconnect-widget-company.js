@@ -182,10 +182,18 @@ angular.module('jb-zconnect-widget-company', [
             }))
             .widget('company-details', angular.extend(widget, {
                 title: 'Company Details',
-                description: 'Widget that shows a location of the company in a details.',
+                description: 'Widget that shows the company in a details.',
                 templateUrl: widgetTemplatesPath + 'company-details.html',
                 controller: 'CompanyDetailsCtrl',
                 controllerAs: 'details',
+                styleClass: 'company-details',
+                frameless: true,
+                config: angular.extend(angular.copy(widgetConfig), {})
+            }))
+            .widget('email', angular.extend(widget, {
+                title: 'Email',
+                description: 'Widget that shows the list.',
+                templateUrl: widgetTemplatesPath + 'email.html',
                 styleClass: 'company-details',
                 frameless: true,
                 config: angular.extend(angular.copy(widgetConfig), {})

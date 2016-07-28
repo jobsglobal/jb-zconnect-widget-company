@@ -183,10 +183,18 @@ angular.module('jb-zconnect-widget-company', [
             }))
             .widget('company-details', angular.extend(widget, {
                 title: 'Company Details',
-                description: 'Widget that shows a location of the company in a details.',
+                description: 'Widget that shows the company in a details.',
                 templateUrl: widgetTemplatesPath + 'company-details.html',
                 controller: 'CompanyDetailsCtrl',
                 controllerAs: 'details',
+                styleClass: 'company-details',
+                frameless: true,
+                config: angular.extend(angular.copy(widgetConfig), {})
+            }))
+            .widget('email', angular.extend(widget, {
+                title: 'Email',
+                description: 'Widget that shows the list.',
+                templateUrl: widgetTemplatesPath + 'email.html',
                 styleClass: 'company-details',
                 frameless: true,
                 config: angular.extend(angular.copy(widgetConfig), {})
@@ -226,6 +234,7 @@ $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/appli
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/company-details.html","<div style=\"height: {{details.config.height}}px !important;\"><ul class=company_details_dashboard><li><h1>Arabian Centers Human Resources</h1></li><li><p><span>Industry :</span>Recruitment Company</p></li><li><p><span>Location :</span>Garhoud, Dubai, United Arab Emirates</p></li><li><p><span>Phone :</span>055 525 23322</p></li><li><p><span>Email :</span>test@jobsglobal.com</p></li></ul></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/company-map.html","<div style=\"height: {{map.config.height}}px !important;\"><div map-lazy-load=https://maps.google.com/maps/api/js map-lazy-load-params=\"https://maps.googleapis.com/maps/api/js?key={{map.config.apiKey}}\"><ng-map center={{map.config.longhitude}},{{map.config.latitude}} zoom={{map.config.zoom}}><marker label={{map.company.name}} place={{map.company.name}} centered=true position=\"{{map.config.longhitude}}, {{map.config.latitude}}\"></marker></ng-map></div></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/drop-cv.html","<div><form class=dropzone method=post enctype=multipart/form-data ng-dropzone dropzone=dropCv.dropzone data-dropzone-config=dropCv.dropzoneConfig data-event-handlers=\"{ \'addedfile\': dropCv.dzAddedFile, \'error\': dropCv.dzError, success: dropCv.dzSuccess }\" style=\"min-height: {{dropCv.config.height}}px\"><div class=dz-message>Drop CV here or click to upload</div></form></div>");
+$templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/email.html","<div style=\"height: {{applicantStats.config.height}}px !important;overflow: auto\"><nvd3 options=applicantStats.options data=applicantStats.data></nvd3></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/followers.html","<div style=\"height: {{followers.config.height}}px !important; text-align:center\"><ul class=recent_followers_ul><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li><li><a><img src=http://zblogged.com/wp-content/uploads/2015/11/5.png></a></li></ul><div class=\"col-lg-12 col-sm-12 col-xs-12\"><div class=row><button type=button class=c_all_cpanel><i class=\"fa fa-chevron-circle-right\" aria-hidden=true></i>See all Notifications</button></div></div></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/general-stats.html","<div style=\"height: {{generalStats.config.height}}px !important;overflow: auto\"><nvd3 options=generalStats.options data=generalStats.data></nvd3></div>");
 $templateCache.put("{widgetsPath}/jb-zconnect-widget-company/src/templates/insights.html","<div class={{insights.config.class}} style=\"height: {{insights.config.height}}px !important;\"><nvd3 options=insights.options data=insights.data></nvd3><div class=\"col-lg-12 col-sm-12 col-xs-12\"><div class=row><button type=button class=c_all_insight_cpanel data-ui-sref={{insights.config.linkSref}}><i class=\"fa fa-chevron-circle-right\" aria-hidden=true></i>{{insights.config.linkText}}</button></div></div></div>");

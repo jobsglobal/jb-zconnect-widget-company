@@ -298,14 +298,15 @@
 
 .company_details_dashboard {
     float: left;
-    padding: 0;
+    padding: 15px;
     width: 100%;
 }
 
 .company_details_dashboard > li {
     float: left;
-    width: 100%;
     list-style-type: none;
+    width: 100%;
+    margin: 5px 0;
 }
 
 .company_details_dashboard > li h1 {
@@ -325,8 +326,10 @@
 }
 
 .company_details_dashboard > li p span {
-    font-family: opensanssemibold;
-    margin-right: 3px;
+    color: #555;
+    font-family: open_sanssemibold;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
 
