@@ -334,3 +334,12 @@
 
 
 /* company profile page ends here */
+
+.email_dashboard_p {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #555;
+}
