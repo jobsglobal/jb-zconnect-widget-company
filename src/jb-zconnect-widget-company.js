@@ -194,7 +194,7 @@ angular.module('jb-zconnect-widget-company', [
                 title: 'Email',
                 description: 'Widget that shows the list.',
                 templateUrl: widgetTemplatesPath + 'email.html',
-                styleClass: 'company-details',
+                styleClass: 'email',
                 frameless: true,
                 config: angular.extend(angular.copy(widgetConfig), {})
             }));
