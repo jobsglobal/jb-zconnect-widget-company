@@ -56,8 +56,8 @@ gulp.task('sample', ['templates'], function() {
         .pipe($.inject(files))
         .pipe(gulp.dest('.tmp/dist'));
     gulp.src('sample/views/*.html')
-      .pipe(gulp.dest('.tmp/dist/views'))
-      .pipe(connect.reload());
+        .pipe(gulp.dest('.tmp/dist/views'))
+        .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {

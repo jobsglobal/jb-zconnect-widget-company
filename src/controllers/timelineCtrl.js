@@ -1,25 +1,31 @@
 'use strict';
 
-angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', ['config', 'companyService', 'jbWidget', 'ngZconnected', function (config, companyService, jbWidget, ngZconnected) {
-  var timeline = this;
-  timeline.config = config;
-  timeline.currentUser = jbWidget.user;
+angular.module('jb-zconnect-widget-company').controller('TimelineCtrl', [
+  'config',
+  'companyService',
+  'jbWidget',
+  'ngZconnected',
+  'currentUser',
+  function (config, companyService, jbWidget, ngZconnected, currentUser) {
+    var vm = this;
+    vm.config = config;
+    vm.currentUser = currentUser;
 
-  timeline.animateElementIn = function ($el) {
-    $el.removeClass('hidden');
-    $el.addClass('animated fadeInUp'); // this example leverages animate.css classes
-  };
+    vm.animateElementIn = function ($el) {
+      $el.removeClass('timeline-hidden');
+      $el.addClass('animated fadeInUp'); // this example leverages animate.css classes
+    };
 
-  timeline.animateElementOut = function ($el) {
-    $el.addClass('hidden');
-    $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
-  };
-  companyService.company.getTimelineHtml(jbWidget.user.user_id, jbWidget.company.id).then(function (resp) {
-    if (ngZconnected._DEBUG)
-      console.log(resp);
-    timeline.events = resp.data;
-  }, function (error) {
-    if (ngZconnected._DEBUG)
-      console.log(error);
-  })
-}]);
+    vm.animateElementOut = function ($el) {
+      $el.addClass('timeline-hidden');
+      $el.removeClass('animated fadeInUp'); // this example leverages animate.css classes
+    };
+    companyService.company.getTimelineHtml(vm.currentUser.user_id, jbWidget.company.id).then(function (resp) {
+      if (ngZconnected._DEBUG)
+        console.log(resp);
+      vm.events = resp.data;
+    }, function (error) {
+      if (ngZconnected._DEBUG)
+        console.log(error);
+    })
+  }]);

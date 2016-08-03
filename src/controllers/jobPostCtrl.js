@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('jb-zconnect-widget-company')
-    .controller('JobPostCtrl', ['resourceService', 'userService', 'jobService', '$q', 'ngZconnected', 'jbWidget', 'companyService', 'employerService',
-      function JobPostCtrl(resourceService, userService, jobService, $q, ngZconnected, jbWidget, companyService, employerService) {
+    .controller('JobPostCtrl', ['resourceService', 'currentUser', 'jobService', '$q', 'ngZconnected', 'jbWidget', 'companyService', 'employerService',
+      function JobPostCtrl(resourceService, currentUser, jobService, $q, ngZconnected, jbWidget, companyService, employerService) {
         var vm = this;
         var defaultImage = "/components/com_media/img/job-default-img.png";
         vm.loader = true;
@@ -11,6 +11,7 @@ angular.module('jb-zconnect-widget-company')
         vm.companyId = jbWidget.company.id;
         vm.newJobs = [];
         vm.expYears = _.range(0, 51);
+        vm.currentUser = currentUser;
         vm.jobGroup = {
           start_date: new Date()
         };
@@ -22,12 +23,8 @@ angular.module('jb-zconnect-widget-company')
         vm.dateEndOptions = {
           maxDate: new Date(2020, 5, 22),
         };
-        $q.when(userService.getCurrentUser()).then(function (currentUser) {
-          if (ngZconnected._DEBUG)
-            console.log(currentUser);
-          vm.currentUser = currentUser;
-          return companyService.company.get(vm.currentUser.user_id, vm.companyId);
-        }).then(function (company) {
+        $q.when(companyService.company.get(vm.currentUser.user_id, vm.companyId))
+          .then(function (company) {
           if (ngZconnected._DEBUG)
             console.log(company);
           vm.company = company;
