@@ -1,8 +1,9 @@
-angular
-    .module('jb-zconnect-widget-company')
-    .controller('InsightsCtrl', ['config', function(config) {
+angular.module('jb-zconnect-widget-company').controller('InsightsCtrl', ['config', 'currentUser', '$q', 'ngZconnected', 'jbWidget', 'employerService', 'statsService',
+    function(config, currentUser, $q, ngZconnected, jbWidget, employerService, statsService) {
         var vm = this;
         vm.config = config;
+        vm.companyId = jbWidget.company.id;
+        vm.currentUser = currentUser;
         vm.options = {
             "chart": {
                 "type": "multiBarHorizontalChart",
@@ -90,18 +91,51 @@ angular
                 "css": {}
             }
         };
-        vm.data = [{
-            "key": "Series1",
-            "color": "#d62728",
-            "values": [{
-                "label": "Followers",
-                "value": 90
-            }, {
-                "label": "Shares",
-                "value": 159
-            }, {
-                "label": "Posts",
-                "value": 250
-            }]
-        }];
-    }]);
+        vm.follower = 0;
+        vm.post = 0;
+        vm.like = 0;
+
+        $q.when(statsService.followers.get(vm.currentUser.user_id, vm.companyId)).then(function(follower) {
+            if (ngZconnected._DEBUG) 
+                console.log(follower);
+                vm.follower = follower.meta.count;
+            return employerService.insights.getTotalPosts(vm.currentUser.user_id, vm.companyId);
+        }).then(function(post) {
+            if (ngZconnected._DEBUG) 
+                console.log(post);
+                vm.post = post.total;
+            return employerService.insights.getTotalLikes(vm.currentUser.user_id, vm.companyId);
+        }).then(function(like) {
+            if (ngZconnected._DEBUG) 
+                console.log(like);
+                vm.like = like.total;
+            return employerService.insights.getTotalShares(vm.currentUser.user_id, vm.companyId);
+        }).then(function(share) {
+            if (ngZconnected._DEBUG) console.log(share);
+            vm.displayTime(vm.follower, vm.post, vm.like, share.total);
+        }, function(error) {
+            if (ngZconnected._DEBUG) {
+                console.log(error)
+            }
+        });
+        vm.displayTime = function(followers, posts, likes, share) {
+            vm.data = [{
+                "key": "Series1",
+                "color": "#d62728",
+                "values": [{
+                    "label": "Followers",
+                    "value": followers
+                }, {
+                    "label": "Shares",
+                    "value": share
+                }, {
+                    "label": "Posts",
+                    "value": posts
+                }, {
+                    "label": "Likes",
+                    "value": likes
+                }]
+            }];
+        }
+    }
+]);
