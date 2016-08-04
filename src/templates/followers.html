@@ -1,5 +1,5 @@
 <div style="height: {{followers.config.height}}px !important; text-align:center">
-    <ul class="recent_followers_ul">
+    <ul class="recent_followers_ul" data-ng-show="followers.array.length">
         <li data-ng-repeat="user in followers.array">
             <a data-ng-href="{{user.profile_url}}">
                 <img ng-src="{{user.avatar}}" err-src="/components/com_community/templates/zconjobs/images/user-Male.png" class="profile-img"/>
@@ -7,7 +7,8 @@
             </a>
         </li>
     </ul>
-    <div class="col-lg-12 col-sm-12 col-xs-12">
+    <span data-ng-show="!followers.array.length">Please wait, Thank you!</span>
+    <div class="col-lg-12 col-sm-12 col-xs-12" data-ng-show="followers.array.length">
         <div class="row">
             <button type="button" class="c_all_cpanel">
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>See all Notifications

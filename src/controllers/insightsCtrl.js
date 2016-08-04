@@ -24,7 +24,7 @@ angular.module('jb-zconnect-widget-company').controller('InsightsCtrl', ['config
                     "rotateLabels": 0,
                     "rotateYLabel": true,
                     "axisLabel": null,
-                    "height": 60,
+                    "height": 100,
                     "ticks": null,
                     "margin": {
                         "top": 0,
@@ -94,7 +94,7 @@ angular.module('jb-zconnect-widget-company').controller('InsightsCtrl', ['config
         vm.follower = 0;
         vm.post = 0;
         vm.like = 0;
-
+        vm.data = null;
         $q.when(statsService.followers.get(vm.currentUser.user_id, vm.companyId)).then(function(follower) {
             if (ngZconnected._DEBUG) 
                 console.log(follower);
